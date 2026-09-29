@@ -132,7 +132,7 @@ const Floodwater = ({frame}: {frame: number}) => {
         <path d={`M130 1787q205 ${-14 + shimmer} 387 0t480 0`} opacity=".14" strokeWidth="3" />
       </g>
       <g fill="none" stroke={COLORS.warmOffWhite} strokeOpacity=".23" strokeWidth="3">
-        <ellipse cx="740" cy="1459" rx="93" ry="12" />
+        <ellipse cx="740" cy="1459" rx="93" ry="12" stroke={COLORS.emerald} strokeOpacity=".55" />
         <path d="M532 1508q122-15 232-2m-693 86q179-20 340 0m382 107q107-13 230 0" />
       </g>
     </svg>
