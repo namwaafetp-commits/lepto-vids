@@ -26,6 +26,10 @@ Ton's art is Pixar-style 3D renders, one transparent PNG per pose.
 
 Until then, the film stands in the `hero-ready` art with a red **POSE NEEDED** chip. The chips are hidden when the `poseLabels` prop is `false`, which `npm run render` sets.
 
+## Adding environment art
+
+The city plate, the rat, the other animals and an optional water texture can also be generated in Ton's style. The prompts are in [docs/ASSET_PROMPTS.md](docs/ASSET_PROMPTS.md). Save each file to the path listed there and set `ready: true` in [src/data/assets.ts](src/data/assets.ts). Until then, the scenes draw vector stand-ins. The water itself is always drawn in code so it can animate.
+
 ## Music
 
 The edit is cut to **120 BPM** (beat = 15 frames, bar = 60 frames). To add music, drop a 120 BPM track at `public/assets/audio/music.mp3` and render with `--props='{"poseLabels":false,"music":"assets/audio/music.mp3"}'`.
@@ -38,10 +42,12 @@ The edit is cut to **120 BPM** (beat = 15 frames, bar = 60 frames). To add music
 | `src/data/timings.ts` | Beat grid and chapter ranges (bars) |
 | `src/data/script.ts` | Every on-screen Thai word |
 | `src/data/characters.ts` | Pose manifest (ready flags, feet and neck anchors) |
+| `src/data/assets.ts` | Environment and prop manifest (ready flags, aspect ratios) |
 | `src/scenes/Ch0Hook.tsx` … `Ch8Cta.tsx` | One file per chapter; each uses its own local frame |
 | `src/components/Character.tsx` | Places a pose by its feet; breathing, head bob, tint, stand-ins |
 | `src/components/KineticText.tsx` | Thai-safe per-grapheme kinetic type (rise, pop, slam, drop, wave, jitter, exits) and marker swipe |
-| `src/components/Water.tsx` | Flood plane plus clip helpers (letters filling with water, legs underwater) |
+| `src/components/Water.tsx` | Layered flood plane (swell, sheen, glints, optional texture), reflections and clip helpers |
+| `src/components/Prop.tsx` | Places a generated prop by its base, or its vector fallback |
 | `src/components/Graphics.tsx` | Callouts, ticks, rings, splashes, bubbles, heat shimmer, caution-tape swipe, panels |
 | `src/design/` | Cream palette, type scale, springs, bundled font loading |
 | `public/fonts/` | Kanit and IBM Plex Sans Thai (SIL OFL), so renders never need network fonts |

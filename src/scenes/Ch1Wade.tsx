@@ -1,11 +1,13 @@
-import {useCurrentFrame} from 'remotion';
+import {Img, staticFile, useCurrentFrame} from 'remotion';
 import {Shot} from '../components/Camera';
 import {Character} from '../components/Character';
 import {Marker, KineticText} from '../components/KineticText';
 import {Place, PulseRings, Rings} from '../components/Graphics';
 import {Paper} from '../components/Paper';
 import {ParallaxLayer} from '../components/ParallaxLayer';
-import {Water, surfaceY} from '../components/Water';
+import {hasAsset} from '../components/Prop';
+import {Reflection, Water, surfaceY} from '../components/Water';
+import {ASSETS} from '../data/assets';
 import {SCRIPT} from '../data/script';
 import {beat} from '../data/timings';
 import {COLORS} from '../design/tokens';
@@ -40,6 +42,15 @@ const City = () => (
   </svg>
 );
 
+/** Generated street plate; its own waterline (about two-thirds down) is lined up with the flood. */
+const PLATE_HEIGHT = LEVEL / 0.66;
+const StreetPlate = ({scroll}: {scroll: number}) => (
+  <Img
+    src={staticFile(ASSETS['bangkok-flood'].file)}
+    style={{position: 'absolute', left: scroll, top: 0, height: PLATE_HEIGHT, width: PLATE_HEIGHT * ASSETS['bangkok-flood'].aspect}}
+  />
+);
+
 /** 4–10 s: Ton wades home in flip-flops; the words ride the flood. Then the doubt, and a dive to his shin. */
 export const Ch1Wade = ({duration}: SceneProps) => {
   const frame = useCurrentFrame();
@@ -53,10 +64,12 @@ export const Ch1Wade = ({duration}: SceneProps) => {
   const tonX = keyframes(frame, [[0, 300], [CUT, 640]], (t) => t);
   const bob = -Math.abs(Math.sin(walk)) * 14;
   const scroll = -frame * 2.2;
+  const wadeTon = <Character pose="wade-side" frame={frame} x={tonX} y={1640 + bob} height={1180} rotate={Math.sin(walk) * 1.6} />;
 
   // Shot B: punch-in on the doubt, then the push into the water at his shin.
   const shin = {x: 470, y: 1660};
   const dive = ease(frame, diveStart, duration, (t) => t * t * t);
+  const worriedTon = <Character pose="look-down-worried" frame={frame} x={470} y={1880} height={1560} headTilt={-4} />;
   const zoomB = 1 + hitPulse(frame, CUT, 6) * 0.06 + dive * 2.4;
 
   return (
@@ -64,11 +77,16 @@ export const Ch1Wade = ({duration}: SceneProps) => {
       <Paper />
       {frame < CUT ? (
         <Shot zoom={1.02 + drain * 0.02} focus={{x: 540, y: 1100}}>
-          <ParallaxLayer depth={0.4} offset={{x: scroll, y: 0}}>
-            <City />
-          </ParallaxLayer>
-          <Character pose="wade-side" frame={frame} x={tonX} y={1640 + bob} height={1180} rotate={Math.sin(walk) * 1.6} />
+          {hasAsset('bangkok-flood') ? (
+            <StreetPlate scroll={-120 + scroll * 1.2} />
+          ) : (
+            <ParallaxLayer depth={0.4} offset={{x: scroll, y: 0}}>
+              <City />
+            </ParallaxLayer>
+          )}
+          {wadeTon}
           <Water {...wave} />
+          <Reflection level={level}>{wadeTon}</Reflection>
           <PulseRings frame={frame} start={20} period={beat(1)} x={tonX} y={surfaceY(tonX, wave) + 6} radius={170} color={COLORS.white} flatten={0.78} width={5} />
           <Place y={LEVEL + 70} align="center">
             <KineticText text={SCRIPT.wade.justWading} frame={frame} start={beat(1)} mode="rise" type="headline" color={COLORS.white} wave={0.05} stagger={2} style={{fontSize: 108}} />
@@ -76,8 +94,9 @@ export const Ch1Wade = ({duration}: SceneProps) => {
         </Shot>
       ) : (
         <Shot zoom={zoomB} focus={shin}>
-          <Character pose="look-down-worried" frame={frame} x={470} y={1880} height={1560} headTilt={-4} />
+          {worriedTon}
           <Water {...wave} amplitude={14} />
+          <Reflection level={level}>{worriedTon}</Reflection>
           <PulseRings frame={frame} start={CUT + 6} period={beat(1)} x={shin.x} y={shin.y} radius={150} color={COLORS.alert} flatten={0.1} width={7} />
           <Place y={250} align="left">
             <span style={{position: 'relative', display: 'inline-block'}}>

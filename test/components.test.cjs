@@ -91,6 +91,12 @@ test('a ready pose draws its own art; a missing pose stands in the hero art', ()
   assert.ok(missing.pose.head && missing.pose.neck, 'stand-in keeps the head-bob rig');
 });
 
+test('a prop whose art is not generated yet draws its fallback', () => {
+  const {Prop} = load('components/Prop.tsx');
+  const html = render(Prop, {id: 'rat', x: 0, y: 0, height: 100, fallback: React.createElement('i', null, 'vector rat')});
+  assert.equal(html, '<i>vector rat</i>');
+});
+
 test('bacterium path is deterministic and wriggles over time', () => {
   const {leptospiraPath} = load('components/Bacterium.tsx');
   assert.equal(leptospiraPath(5, 300), leptospiraPath(5, 300));

@@ -4,7 +4,7 @@ import {Character} from '../components/Character';
 import {CalloutLine, NumberBadge, Place, PulseRings} from '../components/Graphics';
 import {KineticText} from '../components/KineticText';
 import {Paper} from '../components/Paper';
-import {Water} from '../components/Water';
+import {Reflection, Water} from '../components/Water';
 import {SCRIPT} from '../data/script';
 import {beat} from '../data/timings';
 import {COLORS} from '../design/tokens';
@@ -35,14 +35,16 @@ export const Ch4Entry = ({duration}: SceneProps) => {
   const frame = useCurrentFrame();
   const offsets = [0, 1, 2].map((index) => -easeWhip(progressBetween(frame, index * 4, index * 4 + 14)) * 1920);
   const zoom = 1 + frame * 0.00035;
+  const ton = <Character pose="hero-ready" frame={frame} x={TON.x} y={TON.y} height={TON.height} scale={0.94 + springAt(frame, 4, 'pop') * 0.06} />;
 
   return (
     <div style={{position: 'absolute', inset: 0}}>
       <Whip frame={frame} duration={duration} whipOut>
         <Paper />
         <Shot zoom={zoom} focus={{x: 600, y: 1000}}>
-          <Character pose="hero-ready" frame={frame} x={TON.x} y={TON.y} height={TON.height} scale={0.94 + springAt(frame, 4, 'pop') * 0.06} />
+          {ton}
           <Water frame={frame} level={LEVEL} amplitude={12} wavelength={340} />
+          <Reflection level={LEVEL}>{ton}</Reflection>
           <Place y={236} align="center">
             <KineticText text={SCRIPT.entry.title} frame={frame} start={8} mode="rise" type="headline" />
           </Place>

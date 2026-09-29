@@ -3,12 +3,14 @@ import {Shot} from '../components/Camera';
 import {Place, Rings} from '../components/Graphics';
 import {KineticText, Marker} from '../components/KineticText';
 import {Paper} from '../components/Paper';
+import {Prop} from '../components/Prop';
 import {Water} from '../components/Water';
+import type {AssetId} from '../data/assets';
 import {SCRIPT} from '../data/script';
 import {beat} from '../data/timings';
 import {COLORS} from '../design/tokens';
 import {TYPE_SCALE} from '../design/typography';
-import {ease, easeWhip, hitPulse, keyframes, progressBetween} from '../utils/animation';
+import {ease, easeWhip, hitPulse, keyframes, progressBetween, springAt} from '../utils/animation';
 import type {SceneProps} from './types';
 
 /** Ground layers the germ lives in; also the hand-off into chapter 4. */
@@ -67,6 +69,7 @@ const Rat = ({frame}: {frame: number}) => {
 };
 
 const DRIP_X = 330;
+const ANIMAL_ART: readonly AssetId[] = ['rat', 'dog', 'cow', 'buffalo', 'pig'];
 const WATER_LEVEL = 1400;
 
 /** 16–22 s: the source — infected animals' urine — then the list, then the layers it contaminates. */
@@ -103,7 +106,7 @@ export const Ch3Source = ({duration}: SceneProps) => {
               <KineticText text={SCRIPT.source.infectedAnimals} frame={frame} start={beat(2)} mode="rise" type="headline" />
             </Place>
             <div style={{position: 'absolute', inset: 0, transform: `translateX(${(1 - ease(frame, 0, 18)) * -700}px)`}}>
-              <Rat frame={frame} />
+              <Prop id="rat" x={560} y={1030} height={440} rotate={Math.sin(frame * 0.5) * 1.2} fallback={<Rat frame={frame} />} />
             </div>
             {/* Drips from the rat into the flood. */}
             <svg style={{position: 'absolute', inset: 0}} viewBox="0 0 1080 1920" aria-hidden="true">
@@ -126,21 +129,25 @@ export const Ch3Source = ({duration}: SceneProps) => {
           SCRIPT.source.animals.map((name, index) => {
             const at = listAt + Math.round(index * 7.5);
             const left = index % 2 === 0;
+            const icon = springAt(frame, at + 2, 'pop') * (1 - ease(frame, layersAt + 4, layersAt + 14));
             return (
-              <Place key={name} y={330 + index * 190} x={left ? 120 : 88} width={872} align={left ? 'left' : 'right'}>
-                <KineticText
-                  text={name}
-                  frame={frame}
-                  start={at}
-                  mode="slam"
-                  type="display"
-                  color={index === 0 ? COLORS.alert : COLORS.ink}
-                  stagger={1}
-                  exitAt={layersAt + 4}
-                  exitMode="blow"
-                  style={{fontSize: index === 0 ? 190 : 140}}
-                />
-              </Place>
+              <div key={name}>
+                <Prop id={ANIMAL_ART[index]} x={left ? 800 : 280} y={330 + index * 190 + 200} height={200} flip={!left} scale={Math.max(0, icon)} shadow={false} />
+                <Place y={330 + index * 190} x={left ? 120 : 88} width={872} align={left ? 'left' : 'right'}>
+                  <KineticText
+                    text={name}
+                    frame={frame}
+                    start={at}
+                    mode="slam"
+                    type="display"
+                    color={index === 0 ? COLORS.alert : COLORS.ink}
+                    stagger={1}
+                    exitAt={layersAt + 4}
+                    exitMode="blow"
+                    style={{fontSize: index === 0 ? 190 : 140}}
+                  />
+                </Place>
+              </div>
             );
           })}
         <Place y={240} align="center">
