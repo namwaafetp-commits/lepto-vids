@@ -70,6 +70,14 @@ const Rat = ({frame}: {frame: number}) => {
 
 const DRIP_X = 470;
 const ANIMAL_ART: readonly AssetId[] = ['rat', 'dog', 'cow', 'buffalo', 'pig'];
+/** Name position (centre x, top y), name size and icon height for each animal. */
+const ANIMAL_GRID = [
+  {x: 540, y: 260, size: 170, icon: 170},
+  {x: 290, y: 720, size: 110, icon: 210},
+  {x: 790, y: 720, size: 110, icon: 210},
+  {x: 290, y: 1120, size: 110, icon: 210},
+  {x: 790, y: 1120, size: 110, icon: 210},
+] as const;
 const WATER_LEVEL = 1400;
 
 /** 16–22 s: the source — infected animals' urine — then the list, then the layers it contaminates. */
@@ -124,16 +132,15 @@ export const Ch3Source = ({duration}: SceneProps) => {
           <ellipse cx={DRIP_X + 60} cy={WATER_LEVEL + 70} rx={60 + dye * 420} ry={24 + dye * 90} fill={COLORS.jacket} opacity={0.32 * (1 - clearRat)} />
         </svg>
         <Rings frame={frame} start={beat(2) + 8} x={DRIP_X} y={WATER_LEVEL} radius={220} color={COLORS.jacket} count={3} gap={8} />
-        {/* The animal list, one per half beat. */}
+        {/* The animal list, one per half beat: rat on its own row, then a 2 × 2 grid; each icon sits under its name. */}
         {frame >= listAt - 2 && frame < layersAt + 30 &&
           SCRIPT.source.animals.map((name, index) => {
             const at = listAt + Math.round(index * 7.5);
-            const left = index % 2 === 0;
-            const icon = springAt(frame, at + 2, 'pop') * (1 - ease(frame, layersAt + 4, layersAt + 14));
+            const cell = ANIMAL_GRID[index];
+            const icon = springAt(frame, at + 3, 'pop') * (1 - ease(frame, layersAt + 4, layersAt + 14));
             return (
               <div key={name}>
-                <Prop id={ANIMAL_ART[index]} x={left ? 790 : 290} y={330 + index * 190 + 210} height={index === 0 ? 150 : 250} flip={!left} scale={Math.max(0, icon)} shadow={false} />
-                <Place y={330 + index * 190} x={left ? 120 : 88} width={872} align={left ? 'left' : 'right'}>
+                <Place y={cell.y} x={cell.x - 220} width={440} align="center">
                   <KineticText
                     text={name}
                     frame={frame}
@@ -144,9 +151,10 @@ export const Ch3Source = ({duration}: SceneProps) => {
                     stagger={1}
                     exitAt={layersAt + 4}
                     exitMode="blow"
-                    style={{fontSize: index === 0 ? 190 : 140}}
+                    style={{fontSize: cell.size}}
                   />
                 </Place>
+                <Prop id={ANIMAL_ART[index]} x={cell.x} y={cell.y + cell.size * 1.3 + cell.icon} height={cell.icon} scale={Math.max(0, icon)} />
               </div>
             );
           })}
