@@ -6,10 +6,14 @@
     "dev": "remotion studio src/index.ts",
     "build": "remotion bundle src/index.ts",
     "typecheck": "tsc --noEmit",
-    "render:test": "remotion render src/index.ts LeptoFilm out/test.mp4 --codec h264"
+    "render:test": "remotion render src/index.ts LeptoFilm out/test.mp4 --codec h264 --frames=0-299",
+    "test": "node --test test/*.test.cjs",
+    "stills": "node scripts/stills.mjs",
+    "render": "remotion render src/index.ts LeptoFilm out/lepto-film.mp4 --codec h264 --props={\"poseLabels\":false,\"music\":null}"
   },
   "dependencies": {
     "@remotion/cli": "4.0.529",
+    "@remotion/fonts": "4.0.529",
     "@remotion/renderer": "4.0.529",
     "react": "19.3.0",
     "react-dom": "19.3.0",
@@ -18,6 +22,7 @@
   "devDependencies": {
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "esbuild": "0.28.1",
     "typescript": "5.9.3"
   }
 }

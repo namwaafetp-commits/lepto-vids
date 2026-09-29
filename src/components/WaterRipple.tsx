@@ -19,7 +19,7 @@ export const WaterRipple = ({
   center = {x: LAYOUT.width / 2, y: LAYOUT.height / 2},
   start,
   end,
-  color = COLORS.floodTeal,
+  color = COLORS.water,
   opacity = 1,
   maxRadius,
 }: WaterRippleProps) => {

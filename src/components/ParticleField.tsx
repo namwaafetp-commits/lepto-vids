@@ -18,7 +18,7 @@ const wrap = (value: number, extent: number) => ((value % extent) + extent) % ex
 export const ParticleField = ({
   frame,
   count = 70,
-  color = COLORS.floodCyan,
+  color = COLORS.waterLight,
   opacity = 0.4,
   seed = 1,
 }: ParticleFieldProps) => {

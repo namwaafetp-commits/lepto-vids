@@ -33,3 +33,28 @@ export const Camera = ({children, progress, zoom = 1.045, drift = {x: 0, y: 0}}:
     </div>
   );
 };
+
+export type ShotProps = Readonly<{
+  children: ReactNode;
+  /** Canvas point the camera zooms around. */
+  focus?: Vector2;
+  zoom?: number;
+  pan?: Vector2;
+  rotate?: number;
+}>;
+
+/** An explicit camera: the scene computes zoom, pan and roll per frame (pushes, punch-ins, whips). */
+export const Shot = ({children, focus = {x: 540, y: 960}, zoom = 1, pan = {x: 0, y: 0}, rotate = 0}: ShotProps) => (
+  <div style={{position: 'absolute', inset: 0, overflow: 'hidden'}}>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        transformOrigin: `${focus.x}px ${focus.y}px`,
+        transform: `translate3d(${pan.x.toFixed(2)}px, ${pan.y.toFixed(2)}px, 0) rotate(${rotate.toFixed(3)}deg) scale(${zoom.toFixed(4)})`,
+      }}
+    >
+      {children}
+    </div>
+  </div>
+);

@@ -1,5 +1,7 @@
 # Lepto Film Foundation Implementation Plan
 
+> **Superseded** by [docs/STORYBOARD.md](../../STORYBOARD.md) (v2: 60 s, cream editorial look, character-led). Kept for history.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build and validate a 510-frame Remotion prototype containing the first 17 seconds of a premium Thai leptospirosis awareness film.

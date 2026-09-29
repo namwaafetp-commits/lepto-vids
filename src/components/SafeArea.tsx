@@ -6,14 +6,16 @@ export type SafeAreaProps = Readonly<{
   debug?: boolean;
 }>;
 
-/** Inner box is the placement coordinate space for mobile-safe content. */
+const {horizontal, top, bottom} = LAYOUT.safeMargin;
+
+/** Inner box is the placement coordinate space for copy that must stay clear of platform UI. */
 export const SafeArea = ({children, debug = false}: SafeAreaProps) => (
   <div
     style={{
       position: 'absolute',
       inset: 0,
       boxSizing: 'border-box',
-      padding: `${LAYOUT.safeMargin.vertical}px ${LAYOUT.safeMargin.horizontal}px`,
+      padding: `${top}px ${horizontal}px ${bottom}px`,
     }}
   >
     <div style={{position: 'relative', width: '100%', height: '100%'}}>{children}</div>
@@ -25,12 +27,12 @@ export const SafeArea = ({children, debug = false}: SafeAreaProps) => (
         aria-hidden="true"
       >
         <rect
-          x={LAYOUT.safeMargin.horizontal}
-          y={LAYOUT.safeMargin.vertical}
-          width={LAYOUT.width - LAYOUT.safeMargin.horizontal * 2}
-          height={LAYOUT.height - LAYOUT.safeMargin.vertical * 2}
+          x={horizontal}
+          y={top}
+          width={LAYOUT.width - horizontal * 2}
+          height={LAYOUT.height - top - bottom}
           fill="none"
-          stroke={COLORS.warmYellow}
+          stroke={COLORS.alert}
           strokeWidth={2}
           strokeDasharray="12 10"
         />

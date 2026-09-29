@@ -1,5 +1,7 @@
 # Lepto Film Foundation and Opening Scenes
 
+> **Superseded** by [docs/STORYBOARD.md](../../STORYBOARD.md) (v2: 60 s, cream editorial look, character-led). Kept for history.
+
 ## Goal
 
 Create a production-ready Remotion foundation for a premium Thai public-health awareness film about leptospirosis during flooding in Bangkok. This phase implements only the first 17 seconds: Scene 1, the flood introduction, and Scene 2, the contaminated-water reveal.

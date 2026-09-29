@@ -1,13 +1,24 @@
 import {Composition} from 'remotion';
-import {LeptoFilm} from './LeptoFilm';
+import {LeptoFilm, type LeptoFilmProps} from './LeptoFilm';
+import {TOTAL_FRAMES} from './data/timings';
+import {LAYOUT} from './design/tokens';
+import {loadFonts} from './design/fonts';
+
+loadFonts();
+
+const defaultProps: LeptoFilmProps = {
+  poseLabels: true,
+  music: null,
+};
 
 export const Root: React.FC = () => (
   <Composition
     id="LeptoFilm"
     component={LeptoFilm}
-    width={1080}
-    height={1920}
-    fps={30}
-    durationInFrames={510}
+    width={LAYOUT.width}
+    height={LAYOUT.height}
+    fps={LAYOUT.fps}
+    durationInFrames={TOTAL_FRAMES}
+    defaultProps={defaultProps}
   />
 );
