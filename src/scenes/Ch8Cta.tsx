@@ -39,7 +39,7 @@ export const Ch8Cta = (_: SceneProps) => {
             style={{
               position: 'absolute',
               left: 560,
-              top: 820,
+              top: 640,
               width: 440,
               padding: '30px 34px',
               borderRadius: 36,
@@ -70,7 +70,7 @@ export const Ch8Cta = (_: SceneProps) => {
       <Paper />
       <div style={{position: 'absolute', left: 540 - 520, top: 1180 - 620, width: 1040, height: 1240, borderRadius: '50%', background: `radial-gradient(closest-side, rgba(242,178,27,${0.42 * glow}), rgba(242,178,27,0))`}} />
       <Shot zoom={1.02 + local * 0.0012} focus={{x: 540, y: 1300}}>
-        <Character pose="hero-ready" frame={frame} x={540} y={1860} height={1180} scale={0.92 + springAt(frame, END, 'pop') * 0.08} />
+        <Character pose="thumbs-up" frame={frame} x={540} y={1860} height={1180} scale={0.92 + springAt(frame, END, 'pop') * 0.08} />
       </Shot>
       <Place y={228} align="center">
         <KineticText text={SCRIPT.cta.hotlineLabel} frame={frame} start={END + 2} mode="rise" type="title" color={COLORS.inkSoft} style={{fontSize: 52}} />

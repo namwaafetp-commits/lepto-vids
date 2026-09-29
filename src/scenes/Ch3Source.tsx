@@ -68,7 +68,7 @@ const Rat = ({frame}: {frame: number}) => {
   );
 };
 
-const DRIP_X = 330;
+const DRIP_X = 470;
 const ANIMAL_ART: readonly AssetId[] = ['rat', 'dog', 'cow', 'buffalo', 'pig'];
 const WATER_LEVEL = 1400;
 
@@ -106,14 +106,14 @@ export const Ch3Source = ({duration}: SceneProps) => {
               <KineticText text={SCRIPT.source.infectedAnimals} frame={frame} start={beat(2)} mode="rise" type="headline" />
             </Place>
             <div style={{position: 'absolute', inset: 0, transform: `translateX(${(1 - ease(frame, 0, 18)) * -700}px)`}}>
-              <Prop id="rat" x={560} y={1030} height={440} rotate={Math.sin(frame * 0.5) * 1.2} fallback={<Rat frame={frame} />} />
+              <Prop id="rat" x={600} y={1040} height={330} rotate={Math.sin(frame * 0.5) * 1.2} fallback={<Rat frame={frame} />} />
             </div>
             {/* Drips from the rat into the flood. */}
             <svg style={{position: 'absolute', inset: 0}} viewBox="0 0 1080 1920" aria-hidden="true">
               {Array.from({length: 6}, (_, index) => {
                 const t = ((frame - beat(2) - index * 5) % 24) / 24;
                 if (frame < beat(2) + index * 5) return null;
-                const y = 990 + t * t * (WATER_LEVEL - 990);
+                const y = 1020 + t * t * (WATER_LEVEL - 1020);
                 return <ellipse key={index} cx={DRIP_X} cy={y} rx={9} ry={14} fill={COLORS.jacket} opacity={0.9} />;
               })}
             </svg>
@@ -132,7 +132,7 @@ export const Ch3Source = ({duration}: SceneProps) => {
             const icon = springAt(frame, at + 2, 'pop') * (1 - ease(frame, layersAt + 4, layersAt + 14));
             return (
               <div key={name}>
-                <Prop id={ANIMAL_ART[index]} x={left ? 800 : 280} y={330 + index * 190 + 200} height={200} flip={!left} scale={Math.max(0, icon)} shadow={false} />
+                <Prop id={ANIMAL_ART[index]} x={left ? 790 : 290} y={330 + index * 190 + 210} height={index === 0 ? 150 : 250} flip={!left} scale={Math.max(0, icon)} shadow={false} />
                 <Place y={330 + index * 190} x={left ? 120 : 88} width={872} align={left ? 'left' : 'right'}>
                   <KineticText
                     text={name}

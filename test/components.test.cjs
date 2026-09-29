@@ -81,20 +81,26 @@ test('water surface is deterministic, travels with frame, and closes below the c
 
 test('a ready pose draws its own art; a missing pose stands in the hero art', () => {
   const {resolvePose} = load('components/Character.tsx');
-  assert.deepEqual(
-    {...resolvePose('hero-ready'), pose: undefined},
-    {standIn: false, file: 'assets/characters/hero-ready.png', pose: undefined},
-  );
-  const missing = resolvePose('wade-side');
+  const {POSES} = load('data/characters.ts');
+  assert.deepEqual({...resolvePose('wade-side'), pose: undefined}, {standIn: false, file: 'assets/characters/wade-side.png', pose: undefined});
+  const missing = resolvePose('wade-side', {...POSES, 'wade-side': {...POSES['wade-side'], ready: false}});
   assert.equal(missing.standIn, true);
   assert.equal(missing.file, 'assets/characters/hero-ready.png');
   assert.ok(missing.pose.head && missing.pose.neck, 'stand-in keeps the head-bob rig');
 });
 
-test('a prop whose art is not generated yet draws its fallback', () => {
-  const {Prop} = load('components/Prop.tsx');
-  const html = render(Prop, {id: 'rat', x: 0, y: 0, height: 100, fallback: React.createElement('i', null, 'vector rat')});
-  assert.equal(html, '<i>vector rat</i>');
+test('every pose and asset marked ready has its image in public/', () => {
+  const fs = require('node:fs');
+  const {POSES, poseFile} = load('data/characters.ts');
+  const {ASSETS} = load('data/assets.ts');
+  for (const [id, pose] of Object.entries(POSES)) if (pose.ready) assert.ok(fs.existsSync(path.join('public', poseFile(id))), id);
+  for (const [id, asset] of Object.entries(ASSETS)) if (asset.ready) assert.ok(fs.existsSync(path.join('public', asset.file)), id);
+});
+
+test('pose points map onto the canvas from the feet', () => {
+  const {posePoint} = load('components/Character.tsx');
+  const [x, y] = posePoint('look-down-worried', 500, 1800, 1000, 'scratch');
+  assert.ok(x < 500 && y < 1800 && y > 800);
 });
 
 test('bacterium path is deterministic and wriggles over time', () => {

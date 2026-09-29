@@ -1,6 +1,7 @@
 import {useCurrentFrame} from 'remotion';
 import {Shot} from '../components/Camera';
-import {Character} from '../components/Character';
+import {Character, posePoint} from '../components/Character';
+import {Germ} from '../components/Germ';
 import {Bubbles, NumberBadge, Panel, Place, Rings, Splash, TapeSwipe, Tick} from '../components/Graphics';
 import {KineticText} from '../components/KineticText';
 import {Paper} from '../components/Paper';
@@ -9,12 +10,14 @@ import {SCRIPT} from '../data/script';
 import {beat} from '../data/timings';
 import {COLORS} from '../design/tokens';
 import {TYPE_SCALE} from '../design/typography';
-import {ease, hitPulse, keyframes, springAt} from '../utils/animation';
+import {ease, hitPulse, keyframes, lerp, springAt} from '../utils/animation';
 import type {SceneProps} from './types';
 
 const RULES = [beat(4), beat(10), beat(14), beat(18)] as const;
 const CHECKLIST = beat(21);
 const LAND = RULES[0] + 12;
+const LEG = posePoint('wash-soap', 540, 1800, 1250, 'leg');
+const PLASTER = posePoint('bandage', 540, 1800, 1250, 'plaster');
 
 const RuleTitle = ({frame, index}: {frame: number; index: number}) => (
   <Place y={236} x={70} width={940}>
@@ -50,6 +53,17 @@ export const Ch7Prevention = (_: SceneProps) => {
         <Water frame={frame} level={1770} amplitude={6} wavelength={300} foam />
         <Rings frame={frame} start={LAND} x={540} y={1790} radius={420} color={COLORS.water} count={3} gap={4} flatten={0.8} width={8} />
         <Splash frame={frame} start={LAND} x={540} y={1780} spread={420} height={260} count={18} />
+        {frame < LAND + 26 && (
+          <Germ
+            frame={frame}
+            x={frame < LAND ? 800 : lerp(800, 1250, ease(frame, LAND, LAND + 24))}
+            y={frame < LAND ? 1730 : 1730 - Math.sin(ease(frame, LAND, LAND + 24) * Math.PI) * 520 - ease(frame, LAND, LAND + 24) * 300}
+            height={110}
+            flip
+            rotate={frame < LAND ? 0 : (frame - LAND) * 24}
+            scale={frame < LAND ? springAt(frame, RULES[0] + 2, 'pop') : 1}
+          />
+        )}
         <RuleTitle frame={frame} index={0} />
       </>
     );
@@ -66,31 +80,16 @@ export const Ch7Prevention = (_: SceneProps) => {
     shot = (
       <>
         <Character pose="wash-soap" frame={frame} x={540} y={1800} height={1250} />
-        <Bubbles frame={frame} start={RULES[2]} x={470} y={1500} spread={420} count={26} />
+        <Bubbles frame={frame} start={RULES[2]} x={LEG[0]} y={LEG[1] + 80} spread={260} count={26} />
         <RuleTitle frame={frame} index={2} />
       </>
     );
   } else {
-    const slap = springAt(frame, RULES[3] + 14, 'slam');
     shot = (
       <>
         <Character pose="bandage" frame={frame} x={540} y={1800} height={1250} />
-        <div
-          style={{
-            position: 'absolute',
-            left: 300,
-            top: 1400,
-            width: 300,
-            height: 110,
-            borderRadius: 55,
-            backgroundColor: '#EACB9E',
-            boxShadow: '0 10px 24px rgba(27,31,36,.25)',
-            opacity: Math.min(1, slap * 3),
-            transform: `rotate(-18deg) scale(${3 - slap * 2})`,
-          }}
-        >
-          <div style={{position: 'absolute', left: 95, top: 22, width: 110, height: 66, borderRadius: 10, backgroundColor: '#F6E4C8'}} />
-        </div>
+        <Rings frame={frame} start={RULES[3] + 12} x={PLASTER[0]} y={PLASTER[1]} radius={210} color={COLORS.safe} count={3} gap={5} flatten={0} width={8} />
+        <Tick frame={frame} start={RULES[3] + 22} x={PLASTER[0] + 190} y={PLASTER[1] - 150} size={150} duration={10} />
         <RuleTitle frame={frame} index={3} />
       </>
     );

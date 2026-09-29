@@ -4,12 +4,13 @@ import {Character} from '../components/Character';
 import {CalloutLine, NumberBadge, Place, PulseRings} from '../components/Graphics';
 import {KineticText} from '../components/KineticText';
 import {Paper} from '../components/Paper';
+import {Germ} from '../components/Germ';
 import {Reflection, Water} from '../components/Water';
 import {SCRIPT} from '../data/script';
 import {beat} from '../data/timings';
 import {COLORS} from '../design/tokens';
 import {TYPE_SCALE} from '../design/typography';
-import {easeWhip, progressBetween, springAt} from '../utils/animation';
+import {ease, easeWhip, lerp, progressBetween, springAt} from '../utils/animation';
 import {LayerBands} from './Ch3Source';
 import {Whip} from './transitions';
 import type {SceneProps} from './types';
@@ -53,6 +54,18 @@ export const Ch4Entry = ({duration}: SceneProps) => {
             const lift = springAt(frame, at + 6, 'smooth');
             return (
               <div key={route.title}>
+                {frame >= at - 12 && frame < at + 8 && (
+                  <Germ
+                    frame={frame}
+                    x={lerp(1240, target[0], ease(frame, at - 12, at + 2))}
+                    y={lerp(target[1] - 260, target[1], ease(frame, at - 12, at + 2))}
+                    height={lerp(120, 36, ease(frame, at - 12, at + 4))}
+                    rotate={-30 + index * 25}
+                    flip
+                    seed={index}
+                    opacity={1 - ease(frame, at + 2, at + 8)}
+                  />
+                )}
                 <CalloutLine frame={frame} start={at} from={target} to={[480, cardY + 50]} />
                 <PulseRings frame={frame} start={at + 4} period={beat(2)} x={target[0]} y={target[1]} radius={70} color={COLORS.alert} flatten={0} width={5} />
                 <div

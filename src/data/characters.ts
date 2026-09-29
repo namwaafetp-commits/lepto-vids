@@ -29,6 +29,8 @@ export type Pose = Readonly<{
   neck?: Point;
   /** Outline of the head above the collar; enables the head-bob rig. */
   head?: ReadonlyArray<Point>;
+  /** Named body points that effects anchor to (pain rings, bubbles, callouts). */
+  points?: Readonly<Record<string, Point>>;
 }>;
 
 const HERO: Pose = {
@@ -50,19 +52,20 @@ const HERO: Pose = {
   ],
 };
 
-const pending = (aspect = HERO.aspect): Pose => ({ready: false, aspect, foot: [0.5, 0.982]});
+const pose = (aspect: number, points: Pose['points'], foot: Point = [0.5, 0.989]): Pose => ({ready: true, aspect, foot, points});
 
 export const POSES: Readonly<Record<PoseId, Pose>> = {
   'hero-ready': HERO,
-  'wade-side': pending(),
-  'look-down-worried': pending(),
-  'sick-blanket': pending(),
-  'calf-pain': pending(),
-  'red-eyes': pending(),
-  'wash-soap': pending(),
-  'bandage': pending(),
-  'phone-doctor': pending(),
-  'thumbs-up': pending(),
+  'wade-side': pose(906 / 1521, {}),
+  'look-down-worried': pose(550 / 1487, {scratch: [0.4, 0.61]}),
+  'sick-blanket': pose(793 / 1463, {head: [0.5, 0.1]}),
+  'calf-pain': pose(729 / 1483, {calf: [0.33, 0.64]}),
+  // A waist-up close-up: its bottom edge is the frame's bottom, not the ground.
+  'red-eyes': pose(1024 / 1506, {eye: [0.48, 0.3], face: [0.53, 0.33]}, [0.5, 1]),
+  'wash-soap': pose(976 / 1472, {leg: [0.66, 0.55]}),
+  'bandage': pose(952 / 1528, {plaster: [0.51, 0.595]}),
+  'phone-doctor': pose(590 / 1522, {head: [0.47, 0.08]}),
+  'thumbs-up': pose(545 / 1513, {}),
 };
 
 export const poseFile = (id: PoseId): string => `assets/characters/${id}.png`;

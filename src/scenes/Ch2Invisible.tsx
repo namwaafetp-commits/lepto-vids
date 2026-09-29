@@ -1,5 +1,6 @@
 import {useCurrentFrame} from 'remotion';
 import {Bacterium} from '../components/Bacterium';
+import {Germ} from '../components/Germ';
 import {Shot} from '../components/Camera';
 import {Place} from '../components/Graphics';
 import {KineticText} from '../components/KineticText';
@@ -9,14 +10,14 @@ import {SCRIPT} from '../data/script';
 import {beat} from '../data/timings';
 import {COLORS} from '../design/tokens';
 import {TEXT_FONT} from '../design/typography';
-import {ease, easeInOut, hash, hitPulse, keyframes, lerp} from '../utils/animation';
+import {ease, easeInOut, hash, hitPulse, keyframes, lerp, springAt} from '../utils/animation';
 import type {SceneProps} from './types';
 
 const LENS = {x: 540, y: 1000, r: 360};
+/** Real-shape spirals drifting behind the villain inside the lens. */
 const INSIDE = [
-  {x: -120, y: -90, len: 300, rot: -24, seed: 0},
-  {x: 110, y: 40, len: 260, rot: 18, seed: 2},
-  {x: -30, y: 170, len: 220, rot: -6, seed: 4},
+  {x: -150, y: -200, len: 220, rot: -24, seed: 0},
+  {x: 170, y: 190, len: 200, rot: 18, seed: 2},
 ] as const;
 
 /** 10–16 s: the flood becomes a single drop under a magnifier; inside, Leptospira. */
@@ -33,6 +34,8 @@ export const Ch2Invisible = ({duration}: SceneProps) => {
   const escape = ease(frame, exit, duration, (t) => t * t);
   const zoom = 1 + hitPulse(frame, beat(2), 7) * 0.03 + hitPulse(frame, pull, 7) * 0.04;
   const lensScale = radius / LENS.r;
+  // The villain pops into view inside the lens and grins at the camera.
+  const villain = springAt(frame, 20, 'pop') * (1 + hitPulse(frame, beat(3), 6) * 0.08);
 
   return (
     <div style={{position: 'absolute', inset: 0}}>
@@ -74,8 +77,9 @@ export const Ch2Invisible = ({duration}: SceneProps) => {
           <div style={{position: 'absolute', left: radius - 540, top: radius - 960, width: 1080, height: 1920, transform: `scale(${Math.min(1, lensScale)})`, transformOrigin: '540px 960px'}}>
             <ParticleField frame={frame} count={40} seed={5} color={COLORS.silt} opacity={0.5} />
             {INSIDE.map(({x, y, len, rot, seed}, index) => (
-              <Bacterium key={seed} frame={frame} x={540 + x} y={960 + y} length={len} rotate={rot} seed={seed} reveal={reveal(index)} />
+              <Bacterium key={seed} frame={frame} x={540 + x} y={960 + y} length={len} rotate={rot} seed={seed} reveal={reveal(index)} opacity={0.75} />
             ))}
+            {frame < exit - 6 && <Germ frame={frame} x={540} y={960} height={330} scale={villain} rotate={-8} />}
           </div>
         </div>
         {/* Magnifier handle. */}
@@ -108,15 +112,7 @@ export const Ch2Invisible = ({duration}: SceneProps) => {
         </Place>
         {/* One bacterium breaks out and swims off the top. */}
         {frame >= exit - 6 && (
-          <Bacterium
-            frame={frame}
-            x={540}
-            y={lerp(1150, -500, escape)}
-            length={lerp(260, 900, escape)}
-            rotate={-90}
-            seed={9}
-            reveal={ease(frame, exit - 6, exit + 4)}
-          />
+          <Germ frame={frame} x={540} y={lerp(lensY, -700, escape)} height={lerp(330 * 0.7, 900, escape)} rotate={-90} />
         )}
       </Shot>
       <div style={{position: 'absolute', inset: 0, backgroundColor: COLORS.paper, opacity: easeInOut(Math.max(0, escape - 0.85) / 0.15)}} />

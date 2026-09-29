@@ -1,6 +1,6 @@
 import {createContext, useContext, type CSSProperties} from 'react';
 import {Img, staticFile} from 'remotion';
-import {POSES, poseFile, type PoseId} from '../data/characters';
+import {POSES, poseFile, type Pose, type PoseId} from '../data/characters';
 import {COLORS} from '../design/tokens';
 import {TEXT_FONT} from '../design/typography';
 
@@ -33,10 +33,18 @@ export type CharacterProps = Readonly<{
 }>;
 
 /** Resolves a pose to the art actually drawn: its own PNG when ready, else the hero stand-in. */
-export const resolvePose = (id: PoseId) => {
-  const standIn = !POSES[id].ready;
+export const resolvePose = (id: PoseId, poses: Readonly<Record<PoseId, Pose>> = POSES) => {
+  const standIn = !poses[id].ready;
   const art: PoseId = standIn ? 'hero-ready' : id;
-  return {standIn, pose: POSES[art], file: poseFile(art)};
+  return {standIn, pose: poses[art], file: poseFile(art)};
+};
+
+/** Canvas position of a named body point for a pose placed at (x, y) with the given height. */
+export const posePoint = (id: PoseId, x: number, y: number, height: number, name: string): readonly [number, number] => {
+  const {pose} = resolvePose(id);
+  const [px, py] = pose.points?.[name] ?? [0.5, 0.5];
+  const width = height * pose.aspect;
+  return [x + (px - pose.foot[0]) * width, y + (py - pose.foot[1]) * height];
 };
 
 const polygon = (points: ReadonlyArray<readonly [number, number]>, w: number, h: number) =>

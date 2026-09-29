@@ -1,6 +1,6 @@
 import {Img, staticFile, useCurrentFrame} from 'remotion';
 import {Shot} from '../components/Camera';
-import {Character} from '../components/Character';
+import {Character, posePoint} from '../components/Character';
 import {Marker, KineticText} from '../components/KineticText';
 import {Place, PulseRings, Rings} from '../components/Graphics';
 import {Paper} from '../components/Paper';
@@ -42,13 +42,18 @@ const City = () => (
   </svg>
 );
 
-/** Generated street plate; its own waterline (about two-thirds down) is lined up with the flood. */
-const PLATE_HEIGHT = LEVEL / 0.66;
-const StreetPlate = ({scroll}: {scroll: number}) => (
-  <Img
-    src={staticFile(ASSETS['bangkok-flood'].file)}
-    style={{position: 'absolute', left: scroll, top: 0, height: PLATE_HEIGHT, width: PLATE_HEIGHT * ASSETS['bangkok-flood'].aspect}}
-  />
+/** Generated street plate; its own waterline (0.684 of its height) is lined up with the flood. */
+const PLATE_HEIGHT = LEVEL / 0.684;
+const PLATE_WIDTH = PLATE_HEIGHT * ASSETS['bangkok-flood'].aspect;
+const StreetPlate = ({frame}: {frame: number}) => (
+  <div style={{position: 'absolute', inset: 0}}>
+    <Img
+      src={staticFile(ASSETS['bangkok-flood'].file)}
+      style={{position: 'absolute', left: -(PLATE_WIDTH - 1080) / 2 + 160 - frame * 1.6, top: 0, height: PLATE_HEIGHT, width: PLATE_WIDTH}}
+    />
+    {/* Haze so Ton and the type sit in front of the street. */}
+    <div style={{position: 'absolute', inset: 0, background: `linear-gradient(180deg, ${COLORS.paper} 0%, rgba(245,239,228,.35) 22%, rgba(245,239,228,.12) 55%, rgba(245,239,228,0) 70%)`}} />
+  </div>
 );
 
 /** 4–10 s: Ton wades home in flip-flops; the words ride the flood. Then the doubt, and a dive to his shin. */
@@ -67,9 +72,10 @@ export const Ch1Wade = ({duration}: SceneProps) => {
   const wadeTon = <Character pose="wade-side" frame={frame} x={tonX} y={1640 + bob} height={1180} rotate={Math.sin(walk) * 1.6} />;
 
   // Shot B: punch-in on the doubt, then the push into the water at his shin.
-  const shin = {x: 470, y: 1660};
+  const [shinX, shinY] = posePoint('look-down-worried', 470, 1880, 1400, 'scratch');
+  const shin = {x: shinX, y: shinY};
   const dive = ease(frame, diveStart, duration, (t) => t * t * t);
-  const worriedTon = <Character pose="look-down-worried" frame={frame} x={470} y={1880} height={1560} headTilt={-4} />;
+  const worriedTon = <Character pose="look-down-worried" frame={frame} x={470} y={1880} height={1400} />;
   const zoomB = 1 + hitPulse(frame, CUT, 6) * 0.06 + dive * 2.4;
 
   return (
@@ -78,7 +84,7 @@ export const Ch1Wade = ({duration}: SceneProps) => {
       {frame < CUT ? (
         <Shot zoom={1.02 + drain * 0.02} focus={{x: 540, y: 1100}}>
           {hasAsset('bangkok-flood') ? (
-            <StreetPlate scroll={-120 + scroll * 1.2} />
+            <StreetPlate frame={frame} />
           ) : (
             <ParallaxLayer depth={0.4} offset={{x: scroll, y: 0}}>
               <City />

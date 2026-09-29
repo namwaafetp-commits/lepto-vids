@@ -1,6 +1,6 @@
 import {useCurrentFrame} from 'remotion';
 import {Shot} from '../components/Camera';
-import {Character} from '../components/Character';
+import {Character, posePoint} from '../components/Character';
 import {HeatShimmer, Panel, Place, PulseRings} from '../components/Graphics';
 import {KineticText} from '../components/KineticText';
 import {Paper} from '../components/Paper';
@@ -12,6 +12,8 @@ import {ease, hitPulse, shake, springAt} from '../utils/animation';
 import type {SceneProps} from './types';
 
 const CUTS = {fever: 0, calf: beat(4), eyes: beat(8), recap: beat(12), warning: beat(15)} as const;
+const CALF = posePoint('calf-pain', 540, 1820, 1300, 'calf');
+const EYE = posePoint('red-eyes', 540, 1940, 1560, 'eye');
 const RECAP = [SCRIPT.symptoms.fever, SCRIPT.symptoms.headache, SCRIPT.symptoms.calf, SCRIPT.symptoms.eyes] as const;
 
 const Thermometer = ({frame, start}: {frame: number; start: number}) => {
@@ -42,7 +44,7 @@ export const Ch6Symptoms = (_: SceneProps) => {
   if (frame < CUTS.calf) {
     shot = (
       <Shot zoom={1 + frame * 0.0012} focus={{x: 460, y: 1000}}>
-        <HeatShimmer frame={frame} x={460} y={760} width={420} height={320} />
+        <HeatShimmer frame={frame} x={440} y={660} width={440} height={320} />
         <Character pose="sick-blanket" frame={frame} x={440} y={1820} height={1240} scale={enter(0)} tint={{color: COLORS.alert, amount: 0.12 + Math.sin(frame * 0.3) * 0.04}} />
         <Thermometer frame={frame} start={6} />
         <Place y={236} align="left">
@@ -52,9 +54,9 @@ export const Ch6Symptoms = (_: SceneProps) => {
     );
   } else if (frame < CUTS.eyes) {
     shot = (
-      <Shot zoom={1.04 + (frame - CUTS.calf) * 0.001} focus={{x: 450, y: 1400}} pan={{x: sx, y: sy}}>
+      <Shot zoom={1.04 + (frame - CUTS.calf) * 0.001} focus={{x: CALF[0], y: CALF[1]}} pan={{x: sx, y: sy}}>
         <Character pose="calf-pain" frame={frame} x={540} y={1820} height={1300} scale={enter(CUTS.calf)} rotate={-2} />
-        <PulseRings frame={frame} start={CUTS.calf + 4} period={beat(1)} x={450} y={1455} radius={190} color={COLORS.alert} flatten={0.2} width={9} />
+        <PulseRings frame={frame} start={CUTS.calf + 4} period={beat(1)} x={CALF[0]} y={CALF[1]} radius={190} color={COLORS.alert} flatten={0.2} width={9} />
         <Place y={236} align="left">
           <KineticText text={SCRIPT.symptoms.calf} frame={frame} start={CUTS.calf + 2} mode="slam" type="display" jitter={0.012} stagger={2} />
         </Place>
@@ -67,12 +69,12 @@ export const Ch6Symptoms = (_: SceneProps) => {
     const local = frame - CUTS.eyes;
     shot = (
       <>
-        <Shot zoom={1.55 + local * 0.004} focus={{x: 568, y: 700}}>
-          <Character pose="red-eyes" frame={frame} x={540} y={1820} height={1300} tint={{color: COLORS.alert, amount: 0.08}} />
-          <PulseRings frame={frame} start={CUTS.eyes + 6} period={beat(1)} x={568} y={680} radius={260} color={COLORS.alert} flatten={0} width={6} />
+        <Shot zoom={1 + local * 0.0025 + hitPulse(frame, CUTS.eyes + 3, 6) * 0.04} focus={{x: EYE[0], y: EYE[1]}}>
+          <Character pose="red-eyes" frame={frame} x={540} y={1940} height={1560} shadow={false} tint={{color: COLORS.alert, amount: 0.06}} />
+          <PulseRings frame={frame} start={CUTS.eyes + 6} period={beat(1)} x={EYE[0]} y={EYE[1]} radius={170} color={COLORS.alert} flatten={0.25} width={7} />
         </Shot>
-        <Place y={1200} align="center">
-          <KineticText text={SCRIPT.symptoms.eyes} frame={frame} start={CUTS.eyes + 3} mode="slam" type="display" color={COLORS.alert} style={{fontSize: 180, textShadow: `0 6px 30px ${COLORS.paper}`}} />
+        <Place y={200} align="left">
+          <KineticText text={SCRIPT.symptoms.eyes} frame={frame} start={CUTS.eyes + 3} mode="slam" type="display" color={COLORS.alert} style={{fontSize: 170, textShadow: `0 6px 30px ${COLORS.paper}`}} />
         </Place>
         <Place y={1430} align="center">
           <KineticText text={SCRIPT.symptoms.headache} frame={frame} start={CUTS.eyes + beat(2)} mode="pop" type="headline" style={{textShadow: `0 6px 30px ${COLORS.paper}`}} />
