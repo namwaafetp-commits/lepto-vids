@@ -1,0 +1,25 @@
+/** Clamp a numeric value to [0, 1]. NaN is treated as zero. */
+export const clamp01 = (value: number): number => {
+  if (Number.isNaN(value)) return 0;
+  return Math.min(1, Math.max(0, value));
+};
+
+/**
+ * Normalized progress through inclusive frame boundaries. Reversed boundaries
+ * reverse the direction. An equal boundary changes from 0 to 1 at that frame.
+ */
+export const progressBetween = (frame: number, start: number, end: number): number => {
+  if (start === end) return frame >= start ? 1 : 0;
+  return clamp01((frame - start) / (end - start));
+};
+
+/** Fade in and out using independent frame ranges; the result stays in [0, 1]. */
+export const fadeInOut = (
+  frame: number,
+  fadeInStart: number,
+  fadeInEnd: number,
+  fadeOutStart: number,
+  fadeOutEnd: number,
+): number =>
+  progressBetween(frame, fadeInStart, fadeInEnd) *
+  (1 - progressBetween(frame, fadeOutStart, fadeOutEnd));
