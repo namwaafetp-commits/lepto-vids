@@ -36,7 +36,7 @@ The brief for generating polished image assets for the Vox-style health series (
 
 ## Status
 
-Assets 0–8 are done (round 3). #9 was added after the blanket image moved to the fever row. The notes below are kept for generating future poses.
+All assets 0–9 are done. #9 was added after the blanket image moved to the fever row. The notes below are kept for generating future poses.
 
 ## Round 2 feedback: what went wrong and how to redo
 
@@ -70,7 +70,7 @@ Save host files in `public/assets/host/`, the friend in `public/assets/friend/`,
 | 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | ✅ Done, in the video |
 | 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | ✅ Done, in the video |
 | 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
-| 9 | `host/resting-water.png` | Antibiotics · scene 7 (พักผ่อน ดื่มน้ำ row) | Glass-of-water drawing | To do |
+| 9 | `host/resting-water.png` | Antibiotics · scene 7 (พักผ่อน ดื่มน้ำ row) | Glass-of-water drawing | ✅ Done, in the video |
 
 ---
 
