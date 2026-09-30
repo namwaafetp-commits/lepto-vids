@@ -5,7 +5,7 @@ import {ANTIBIOTICS_SCRIPT} from '../../data/antibioticsScript';
 import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
 import {VOX_COLORS} from '../../design/tokens';
 import {Capsule, PillBlister} from './art';
-import {InkText, Photo, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, Photo, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.action;
 const COPY = ANTIBIOTICS_SCRIPT.action;
@@ -36,7 +36,7 @@ const Thumbnail = ({index, frame}: {index: number; frame: number}): ReactNode =>
   }
 };
 
-export const Scene07Action = ({frame, localFrame}: AntibioticsSceneProps) => (
+export const Scene07Action = ({frame, localFrame}: SceneProps) => (
   <VoxScene frame={frame} localFrame={localFrame} duration={range.duration} zoom={1.03}>
     <div style={{position: 'absolute', left: 0, right: 0, top: 0, textAlign: 'center'}}>
       <InkText text={COPY.headline} frame={localFrame} start={events.headline} size="display" style={{fontSize: 96}} />

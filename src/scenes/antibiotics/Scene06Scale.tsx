@@ -6,12 +6,12 @@ import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
 import {VOX_COLORS} from '../../design/tokens';
 import {TYPE_SCALE} from '../../design/typography';
 import {progressBetween} from '../../utils/animation';
-import {InkText, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.scale;
 const COPY = ANTIBIOTICS_SCRIPT.scale;
 
-export const Scene06Scale = ({frame, localFrame}: AntibioticsSceneProps) => (
+export const Scene06Scale = ({frame, localFrame}: SceneProps) => (
   <VoxScene frame={frame} localFrame={localFrame} duration={range.duration} zoom={0.96}>
     <div style={{position: 'absolute', left: 0, right: 0, top: 20, textAlign: 'center'}}>
       <InkText text={COPY.kicker} frame={localFrame} start={events.kicker} size="body" color={VOX_COLORS.inkSoft} />

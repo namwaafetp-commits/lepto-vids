@@ -5,12 +5,12 @@ import {ANTIBIOTICS_SCRIPT} from '../../data/antibioticsScript';
 import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
 import {VOX_COLORS} from '../../design/tokens';
 import {PillBlister} from './art';
-import {InkText, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.twist;
 const COPY = ANTIBIOTICS_SCRIPT.twist;
 
-export const Scene02Twist = ({frame, localFrame}: AntibioticsSceneProps) => (
+export const Scene02Twist = ({frame, localFrame}: SceneProps) => (
   <VoxScene frame={frame} localFrame={localFrame} duration={range.duration} zoom={1.08}>
     <div style={{position: 'absolute', left: 0, right: 0, top: 40, textAlign: 'center'}}>
       <InkText text={COPY.commonName} frame={localFrame} start={events.commonName} size="display" style={{fontSize: 120}} />

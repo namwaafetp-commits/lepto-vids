@@ -1,7 +1,4 @@
-import '@fontsource/noto-sans-thai/400.css';
-import '@fontsource/noto-sans-thai/600.css';
-import '@fontsource/noto-sans-thai/700.css';
-import '@fontsource/noto-sans-thai/800.css';
+import './design/fonts';
 import type {ComponentType} from 'react';
 import {useCurrentFrame} from 'remotion';
 import {ANTIBIOTICS_TIMINGS, type AntibioticsSceneId} from './data/antibioticsTimings';
@@ -14,9 +11,9 @@ import {Scene05Resistance} from './scenes/antibiotics/Scene05Resistance';
 import {Scene06Scale} from './scenes/antibiotics/Scene06Scale';
 import {Scene07Action} from './scenes/antibiotics/Scene07Action';
 import {Scene08Closing} from './scenes/antibiotics/Scene08Closing';
-import type {AntibioticsSceneProps} from './scenes/antibiotics/shared';
+import type {SceneProps} from './scenes/voxShared';
 
-const SCENES: readonly (readonly [AntibioticsSceneId, ComponentType<AntibioticsSceneProps>])[] = [
+const SCENES: readonly (readonly [AntibioticsSceneId, ComponentType<SceneProps>])[] = [
   ['hook', Scene01Hook],
   ['twist', Scene02Twist],
   ['cause', Scene03Cause],

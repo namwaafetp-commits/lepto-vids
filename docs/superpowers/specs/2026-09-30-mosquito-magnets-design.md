@@ -74,6 +74,7 @@ Key message: **ยุงไม่ได้เลือกจากเลือ�
 Wording notes:
 - The script does **not** claim blood sugar or blood type has zero effect. It only says the mosquito chooses before it has tasted any blood, which is accurate.
 - The "100×" figure refers to one lab study with *Aedes aegypti* and a small group of volunteers. On screen it is always shown with its source.
+- The bar heights are illustrative; only the 100× ratio between the tallest and shortest bar comes from the study. The source line says "แผนภูมิเป็นภาพประกอบ" (the chart is an illustration).
 
 As with the antibiotics film, a medical professional and a native Thai copy editor should review the script before release.
 
@@ -85,7 +86,7 @@ Same Vox system as the antibiotics film: paper texture, cutouts and stickers, hi
 
 **Vector art (new, in code):** mosquito (female, and a striped Aedes version), bite dots, egg cluster, color swatches, clock face, water jar with larvae, repellent bottle.
 
-**Reused images:** `thumbs-up.png`, plus `ChatGPT Image Sep 29, 2026, 04_12_35 PM.png` (arms crossed), to be moved and renamed to `public/assets/characters/arms-crossed.png`.
+**Reused images:** `thumbs-up.png`, plus the arms-crossed character, moved from `ChatGPT Image Sep 29, 2026, 04_12_35 PM.png` to `public/assets/characters/arms-crossed.png`.
 
 **Placeholder until real art exists:** the itchy, bitten character → `public/assets/mosquito/itchy.png`.
 

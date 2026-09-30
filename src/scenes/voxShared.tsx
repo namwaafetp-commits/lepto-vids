@@ -1,15 +1,15 @@
 import type {CSSProperties, ReactNode} from 'react';
 import {Img, interpolate, spring, staticFile} from 'remotion';
-import {Camera} from '../../components/Camera';
-import {KineticText} from '../../components/KineticText';
-import {SafeArea} from '../../components/SafeArea';
-import {PaperTexture} from '../../components/vox/PaperTexture';
-import {MOTION} from '../../design/motion';
-import {LAYOUT, VOX_COLORS} from '../../design/tokens';
-import {TYPE_SCALE} from '../../design/typography';
-import {progressBetween} from '../../utils/animation';
+import {Camera} from '../components/Camera';
+import {KineticText} from '../components/KineticText';
+import {SafeArea} from '../components/SafeArea';
+import {PaperTexture} from '../components/vox/PaperTexture';
+import {MOTION} from '../design/motion';
+import {LAYOUT, VOX_COLORS} from '../design/tokens';
+import {TYPE_SCALE} from '../design/typography';
+import {progressBetween} from '../utils/animation';
 
-export type AntibioticsSceneProps = Readonly<{
+export type SceneProps = Readonly<{
   frame: number;
   localFrame: number;
 }>;

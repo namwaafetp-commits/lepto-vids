@@ -8,7 +8,7 @@ import {VOX_COLORS} from '../../design/tokens';
 import {TYPE_SCALE} from '../../design/typography';
 import {easeOutCubic, progressBetween} from '../../utils/animation';
 import {Capsule, Virus} from './art';
-import {InkText, popAt, Stamp, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, popAt, Stamp, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.illusion;
 const COPY = ANTIBIOTICS_SCRIPT.illusion;
@@ -19,7 +19,7 @@ const CHART = {width: 904, height: 680} as const;
 const PILL_DAY = 2;
 const VIRUS_CENTER = {x: 452, y: 760};
 
-export const Scene04Illusion = ({frame, localFrame}: AntibioticsSceneProps) => {
+export const Scene04Illusion = ({frame, localFrame}: SceneProps) => {
   const partA = 1 - progressBetween(localFrame, events.chart - 16, events.chart);
   const approach = easeOutCubic(progressBetween(localFrame, events.pillLaunch, events.impact));
   const rebound = progressBetween(localFrame, events.impact, events.impact + 34);

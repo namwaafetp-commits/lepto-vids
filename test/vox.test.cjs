@@ -94,3 +94,25 @@ test('paper grain re-seeds every four frames and is deterministic', () => {
   assert.equal(render(PaperTexture, {frame: 8}), render(PaperTexture, {frame: 11}));
   assert.notEqual(render(PaperTexture, {frame: 11}), render(PaperTexture, {frame: 12}));
 });
+
+test('bar chart grows bars in order and keeps a sliver for tiny values', () => {
+  const {BarChart, barRect} = load('src/components/vox/BarChart.tsx');
+  const values = [1, 0.01];
+  const box = {width: 200, height: 100, count: 2, gap: 20};
+  assert.ok(barRect(1, 0.01, box).height >= 8);
+  assert.equal(barRect(0, 1, box).y, 0);
+  const html = renderToStaticMarkup(React.createElement(BarChart, {frame: 20, start: 0, stagger: 10, values, width: 200, height: 100, gap: 20}));
+  assert.match(html, /data-bar="0" data-grow="1\.00"/);
+  assert.match(html, /data-bar="1" data-grow="0\.[0-9]+"/);
+});
+
+test('scent trail starts at its source and only draws dots it has reached', () => {
+  const {ScentTrail, trailPoint} = load('src/components/vox/ScentTrail.tsx');
+  const from = {x: 100, y: 100};
+  const to = {x: 500, y: 100};
+  assert.deepEqual(trailPoint(from, to, 0, 40, 1.3), from);
+  const props = {start: 10, grow: 20, from, to};
+  assert.equal((render(ScentTrail, {...props, frame: 10}).match(/<circle/g) || []).length, 0);
+  assert.match(render(ScentTrail, {...props, frame: 30}), /data-trail-reach="1\.00"/);
+  assert.ok((render(ScentTrail, {...props, frame: 30}).match(/<circle/g) || []).length > 20);
+});

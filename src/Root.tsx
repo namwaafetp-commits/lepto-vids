@@ -2,6 +2,8 @@ import {Composition} from 'remotion';
 import {AntibioticsFilm} from './AntibioticsFilm';
 import {ANTIBIOTICS_DURATION} from './data/antibioticsTimings';
 import {LeptoFilm} from './LeptoFilm';
+import {MosquitoFilm} from './MosquitoFilm';
+import {MOSQUITO_DURATION} from './data/mosquitoTimings';
 
 export const Root: React.FC = () => (
   <>
@@ -20,6 +22,14 @@ export const Root: React.FC = () => (
       height={1920}
       fps={30}
       durationInFrames={ANTIBIOTICS_DURATION}
+    />
+    <Composition
+      id="MosquitoFilm"
+      component={MosquitoFilm}
+      width={1080}
+      height={1920}
+      fps={30}
+      durationInFrames={MOSQUITO_DURATION}
     />
   </>
 );

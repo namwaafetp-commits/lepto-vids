@@ -6,12 +6,12 @@ import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
 import {VOX_COLORS} from '../../design/tokens';
 import {TYPE_SCALE} from '../../design/typography';
 import {progressBetween} from '../../utils/animation';
-import {InkText, Photo, popAt, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, Photo, popAt, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.closing;
 const COPY = ANTIBIOTICS_SCRIPT.closing;
 
-export const Scene08Closing = ({frame, localFrame}: AntibioticsSceneProps) => {
+export const Scene08Closing = ({frame, localFrame}: SceneProps) => {
   const notEqual = popAt(localFrame, events.notEqual);
 
   return (

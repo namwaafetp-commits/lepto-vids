@@ -8,7 +8,7 @@ import {VOX_COLORS} from '../../design/tokens';
 import {TYPE_SCALE} from '../../design/typography';
 import {progressBetween} from '../../utils/animation';
 import {Bacterium, Virus} from './art';
-import {InkText, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.cause;
 const COPY = ANTIBIOTICS_SCRIPT.cause;
@@ -20,7 +20,7 @@ const SpecimenCard = ({label, children}: {label: string; children: ReactNode}) =
   </div>
 );
 
-export const Scene03Cause = ({frame, localFrame}: AntibioticsSceneProps) => {
+export const Scene03Cause = ({frame, localFrame}: SceneProps) => {
   const bacteriaDim = 1 - 0.55 * progressBetween(localFrame, events.notBacteria + 10, events.notBacteria + 30);
   const scaleIn = progressBetween(localFrame, events.scale, events.scale + 14);
 

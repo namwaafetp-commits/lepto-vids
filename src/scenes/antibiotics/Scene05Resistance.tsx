@@ -6,7 +6,7 @@ import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
 import {VOX_COLORS} from '../../design/tokens';
 import {easeOutCubic, fadeInOut, hash01, progressBetween} from '../../utils/animation';
 import {Bacterium, Capsule} from './art';
-import {InkText, popAt, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, popAt, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.resistance;
 const COPY = ANTIBIOTICS_SCRIPT.resistance;
@@ -73,7 +73,7 @@ const Cell = ({index, localFrame}: {index: number; localFrame: number}) => {
   );
 };
 
-export const Scene05Resistance = ({frame, localFrame}: AntibioticsSceneProps) => {
+export const Scene05Resistance = ({frame, localFrame}: SceneProps) => {
   const sweep = progressBetween(localFrame, events.sweep - 10, events.sweep + 56);
   const pillX = interpolate(sweep, [0, 1], [-260, 1160]);
   const pillY = GRID_TOP + 436 + Math.sin(sweep * Math.PI * 2) * 60;

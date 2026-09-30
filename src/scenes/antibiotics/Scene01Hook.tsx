@@ -3,12 +3,12 @@ import {Highlighter} from '../../components/vox/Highlighter';
 import {ANTIBIOTICS_SCRIPT} from '../../data/antibioticsScript';
 import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
 import {PharmacyScene, PillBlister, SoreThroatPortrait} from './art';
-import {InkText, SpeechBubble, VoxScene, type AntibioticsSceneProps} from './shared';
+import {InkText, SpeechBubble, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.hook;
 const COPY = ANTIBIOTICS_SCRIPT.hook;
 
-export const Scene01Hook = ({frame, localFrame}: AntibioticsSceneProps) => (
+export const Scene01Hook = ({frame, localFrame}: SceneProps) => (
   <VoxScene frame={frame} localFrame={localFrame} duration={range.duration} zoom={1.06}>
     <Cutout frame={localFrame} start={events.pharmacy} x={452} y={380} width={800} height={560} rotate={2}>
       <PharmacyScene width={768} />
