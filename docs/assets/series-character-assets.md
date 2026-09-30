@@ -1,0 +1,94 @@
+# Series Character & Image Assets
+
+The brief for generating polished image assets for the Vox-style health series (antibiotics, mosquitoes, and future topics). Generate the images in ChatGPT (or any image tool), save them with the exact file names below, and add them to the repo. The videos will then be wired up to use them.
+
+**Style:** flat 2D paper-cutout illustration.
+**Host:** a young Thai woman. A secondary "friend" character appears where a scene compares two people.
+
+---
+
+## How to generate (keeps the character consistent)
+
+1. **Make the character reference first** (prompt 0 below). Regenerate until you love her; every other image is built from it.
+2. For every other image, **start a message with the reference image attached**, then paste the **Style block**, the **Character block**, and the pose prompt.
+3. Ask for a **transparent background** every time (characters only). If the tool gives a white background instead, that's OK; say so and it can be removed later.
+4. If a result drifts (different face, hair or clothes), reply: *"Keep her exactly like the attached reference: same face, hair, earrings and outfit. Only change the pose."*
+
+---
+
+## Style block (paste into every prompt)
+
+> Flat 2D editorial illustration in a paper-cutout collage style, like a Vox explainer video. Bold simple shapes, minimal shading (one flat shadow tone per color), subtle paper-grain texture inside the shapes, crisp clean edges. Limited palette: mustard yellow #F2B72E, teal #2A8C8C, warm off-white #F4EFE6, ink black #1B1B1B, soft red #D64541, natural skin tones. Thin or no outlines. Full body unless stated, centered, filling about 90% of the image height, portrait 2:3 (1024 × 1536). Transparent background. No text, no letters, no watermark, no border, no frame, no ground shadow.
+
+## Character block: the host (paste into every host prompt)
+
+> The character is a friendly Thai woman in her mid-20s: warm light-tan skin, shoulder-length straight black hair with a side part, small silver stud earrings, round friendly face, expressive dark eyes, natural eyebrows. She wears a mustard-yellow short-sleeve crew-neck T-shirt, dark navy straight-leg jeans and white sneakers.
+
+## Character block: the friend (paste into the friend prompt)
+
+> A second character, her friend: a Thai man in his mid-20s, short neat black hair, calm easy smile, wearing a teal short-sleeve T-shirt, light grey chino shorts and dark sneakers. Same flat paper-cutout style as the host.
+
+---
+
+## Shot list
+
+Save host files in `public/assets/host/`, the friend in `public/assets/friend/`, and backgrounds in `public/assets/backgrounds/`. PNG only.
+
+| # | File name | Used in | Replaces |
+|---|---|---|---|
+| 0 | `host/host-reference.png` | Reference only (not in the video) | — |
+| 1 | `host/sore-throat.png` | Antibiotics · scene 1 | Vector placeholder drawing |
+| 2 | `host/sick-blanket.png` | Antibiotics · scene 7 | `sick-blanket.png` |
+| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` |
+| 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` |
+| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing |
+| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` |
+| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` |
+| 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing |
+
+---
+
+## Prompts
+
+Each prompt below goes **after** the Style block and Character block (and with the reference image attached, from #1 onward).
+
+### 0 · Character reference sheet — `host/host-reference.png`
+> Character turnaround sheet of the host: three full-body views side by side (front, three-quarter, side profile), neutral friendly expression, arms relaxed. Landscape 3:2 (1536 × 1024) for this image only.
+
+### 1 · Sore throat — `host/sore-throat.png`
+> Half-body portrait (waist up). She has a sore throat: one hand gently holding the front of her neck, eyes squinted, eyebrows raised in discomfort, mouth in a small wince. A soft red glow on her throat area. Facing the viewer, head tilted slightly.
+
+### 2 · Resting with a blanket — `host/sick-blanket.png`
+> Sitting cross-legged, wrapped in a thick off-white blanket up to her shoulders, holding a mug of warm water with both hands, a small thermometer in her mouth, tired but calm expression, slightly flushed cheeks.
+
+### 3 · Calling the doctor — `host/phone-doctor.png`
+> Standing, holding a smartphone to her ear with one hand, the other hand raised with the index finger up as if explaining symptoms, concerned but composed expression.
+
+### 4 · Thumbs up — `host/thumbs-up.png`
+> Standing, confident warm smile, one hand giving a thumbs-up at chest height, the other hand relaxed at her side. Looking at the viewer.
+
+### 5 · Itchy from mosquito bites — `host/itchy.png`
+> Standing, annoyed and itchy: scratching her left forearm with her right hand, shoulders raised, lips pressed together, eyes squinting. Her arms are bare. **Do not draw any bites or marks on her skin** (they're animated on top in the video). Small motion lines near the scratching hand.
+
+### 6 · Standing, facing left — `host/standing-left.png`
+> Standing relaxed in a three-quarter view **facing the left side of the image**, hands loosely at her sides, calm neutral expression, mouth slightly open as if breathing out gently. Her face must be clearly visible and in the upper fifth of the image.
+
+### 7 · The friend, arms crossed — `friend/arms-crossed.png`
+> The friend character, standing with his arms crossed, relaxed confident smile, looking at the viewer. His arms are bare and there are no marks on his skin.
+
+### 8 · Pharmacy background — `backgrounds/pharmacy.png`
+> Interior of a small Thai neighborhood pharmacy seen from the customer side of the counter: a glass counter in the foreground, wooden shelves behind stacked with colorful generic medicine boxes, a green cross sign on the wall, warm daylight. Flat paper-cutout style. **No people. No readable text or brand names anywhere, including the sign.** Landscape 3:2 (1536 × 1024), with a normal (non-transparent) background for this image only.
+
+---
+
+## Checklist before handing over
+
+- [ ] Same face, hair, earrings and outfit in every host image
+- [ ] Transparent background (except #0 and #8)
+- [ ] No text or letters inside any image
+- [ ] Portrait 2:3 for characters, landscape 3:2 for #0 and #8
+- [ ] Files named exactly as in the shot list
+
+## Adding the files to the repo
+
+Upload them on GitHub to the `feat/lepto-film-foundation` branch in the folders above ("Add file → Upload files"), the same way you uploaded the earlier images. If you'd rather not sort them into folders, upload them anywhere with these file names and they'll be moved into place.
