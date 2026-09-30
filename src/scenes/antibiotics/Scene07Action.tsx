@@ -19,7 +19,7 @@ const Thumbnail = ({index, frame}: {index: number; frame: number}): ReactNode =>
     case 0:
       return <Photo src="assets/host/sick-blanket.png" objectPosition="50% 10%" zoom={1.35} />;
     case 1:
-      return <Photo src="assets/characters/phone-doctor.png" objectPosition="52% 10%" zoom={1.9} />;
+      return <Photo src="assets/host/phone-doctor.png" objectPosition="50% 8%" zoom={1.6} />;
     case 2:
       return (
         <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#E4EEF0'}}>

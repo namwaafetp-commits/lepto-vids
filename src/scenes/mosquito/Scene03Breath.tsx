@@ -14,7 +14,8 @@ const {range, events} = MOSQUITO_TIMINGS.breath;
 const COPY = MOSQUITO_SCRIPT.breath;
 
 const BREATH = '#7C98A8';
-const MOUTH = {x: 684, y: 700};
+/** Her mouth in host/standing-left.png (450, 232) mapped into the 420 × 630 sticker. */
+const MOUTH = {x: 664, y: 712};
 const FAR_END = {x: 20, y: 540};
 const AMPLITUDE = 44;
 const SEED = 0.7;
@@ -36,7 +37,7 @@ export const Scene03Breath = ({frame, localFrame}: SceneProps) => {
         <InkText text={COPY.lead} frame={localFrame} start={events.lead} size="body" color={VOX_COLORS.inkSoft} style={{fontSize: 46}} />
       </div>
       <Cutout frame={localFrame} start={events.person} x={690} y={930} width={420} height={630} rotate={2} variant="sticker">
-        <Photo src="assets/characters/arms-crossed.png" fit="contain" objectPosition="50% 50%" />
+        <Photo src="assets/host/standing-left.png" fit="contain" objectPosition="50% 50%" />
       </Cutout>
       <ScentTrail frame={localFrame} start={events.trail} grow={50} from={MOUTH} to={FAR_END} color={BREATH} amplitude={AMPLITUDE} seed={SEED} dots={40} />
       <div

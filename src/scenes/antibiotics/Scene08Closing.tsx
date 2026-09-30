@@ -45,7 +45,7 @@ export const Scene08Closing = ({frame, localFrame}: SceneProps) => {
         <InkText text={COPY.commonName} frame={localFrame} start={events.commonName} size="display" color={VOX_COLORS.inkSoft} style={{fontSize: 120}} />
       </div>
       <Cutout frame={localFrame} start={events.thumbsUp} x={452} y={1240} width={560} height={840} rotate={-3} variant="sticker">
-        <Photo src="assets/characters/thumbs-up.png" fit="contain" objectPosition="50% 50%" />
+        <Photo src="assets/host/thumbs-up.png" fit="contain" objectPosition="50% 50%" />
       </Cutout>
     </VoxScene>
   );

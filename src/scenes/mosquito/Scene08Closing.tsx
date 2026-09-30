@@ -27,7 +27,7 @@ export const Scene08Closing = ({frame, localFrame}: SceneProps) => {
         </Highlighter>
       </div>
       <Cutout frame={localFrame} start={events.thumbsUp} x={452} y={1160} width={580} height={870} rotate={-3} variant="sticker">
-        <Photo src="assets/characters/thumbs-up.png" fit="contain" objectPosition="50% 50%" />
+        <Photo src="assets/host/thumbs-up.png" fit="contain" objectPosition="50% 50%" />
       </Cutout>
       <div
         style={{

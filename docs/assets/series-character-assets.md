@@ -28,11 +28,15 @@ The brief for generating polished image assets for the Vox-style health series (
 
 ## Character block: the friend (paste into the friend prompt)
 
-> A second character, her friend: a Thai man in his mid-20s, short wavy black hair, calm easy smile, wearing an open teal short-sleeve shirt over a white T-shirt, loose black trousers and black sneakers. Same flat paper-cutout style as the host.
+> A second character, her friend: a Thai man in his mid-20s, short wavy black hair, calm easy smile, wearing an open teal shirt with rolled sleeves over a white T-shirt, loose beige trousers and white sneakers. Same flat paper-cutout style as the host.
 
-*(Updated to match the friend from round 2, whose look works well.)*
+*(Final friend, round 3: open teal shirt, white T-shirt, beige trousers, white sneakers.)*
 
 ---
+
+## Status
+
+All 9 assets are done and used in both films (round 3). The notes below are kept for generating future poses.
 
 ## Round 2 feedback: what went wrong and how to redo
 
@@ -60,11 +64,11 @@ Save host files in `public/assets/host/`, the friend in `public/assets/friend/`,
 | 0 | `host/host-reference.png` | Reference only (not in the video) | — | ✅ Done |
 | 1 | `host/sore-throat.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
 | 2 | `host/sick-blanket.png` | Antibiotics · scene 7 | `sick-blanket.png` | ✅ Done, in the video |
-| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | Redo (see round 2 feedback) |
-| 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` | To do |
-| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | Redo (see round 2 feedback) |
-| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | Redo (see round 2 feedback) |
-| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | Redo (see round 2 feedback) |
+| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | ✅ Done, in the video |
+| 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` | ✅ Done, in the video |
+| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
+| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | ✅ Done, in the video |
+| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | ✅ Done, in the video |
 | 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
 
 ---

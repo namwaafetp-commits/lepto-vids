@@ -3,10 +3,7 @@ import type {Vector2} from '../../components/Camera';
 import {VOX_COLORS} from '../../design/tokens';
 import {THAI_FONT_FAMILY} from '../../design/typography';
 
-/**
- * Vector art for the mosquito film. The itchy character is a stand-in for
- * public/assets/mosquito/itchy.png until matching character art exists.
- */
+/** Vector art for the mosquito film: drawn in code so it can animate. */
 
 type ArtProps = Readonly<{
   width: number;
@@ -14,9 +11,6 @@ type ArtProps = Readonly<{
   style?: CSSProperties;
 }>;
 
-const SKIN = '#E7B08A';
-const SKIN_SHADE = '#C98B66';
-const HAIR = '#2A1F17';
 const MOSQUITO_BODY = '#3B342E';
 const WING = '#DCE8EE';
 export const BITE = '#E0707A';
@@ -116,42 +110,12 @@ export const EggCluster = ({width, style}: ArtProps) => (
   </svg>
 );
 
-/** Bite positions on the itchy character, in its 400 × 820 view box. */
+/** Bite positions on bare skin (forearms, hands, neck, ankles) in the 1024 × 1536 host/itchy.png. */
 export const BITE_SPOTS: readonly Vector2[] = [
-  {x: 92, y: 330}, {x: 78, y: 430}, {x: 96, y: 486}, {x: 70, y: 380},
-  {x: 318, y: 300}, {x: 300, y: 372}, {x: 162, y: 680}, {x: 238, y: 664},
-  {x: 150, y: 742}, {x: 252, y: 736}, {x: 176, y: 712}, {x: 108, y: 268},
+  {x: 505, y: 604}, {x: 540, y: 668}, {x: 556, y: 732}, {x: 604, y: 528},
+  {x: 468, y: 556}, {x: 590, y: 712}, {x: 540, y: 306}, {x: 584, y: 298},
+  {x: 440, y: 1418}, {x: 466, y: 1394}, {x: 604, y: 1420}, {x: 630, y: 1396},
 ];
-
-/** Stand-in for public/assets/mosquito/itchy.png: a bare-armed character scratching. */
-export const ItchyPerson = ({width, frame = 0, style}: ArtProps) => {
-  const scratch = Math.sin(frame * 0.9) * 10;
-  return (
-    <svg viewBox="0 0 400 820" style={{width, height: (width * 820) / 400, overflow: 'visible', ...style}} aria-hidden="true">
-      <g stroke={VOX_COLORS.ink} strokeWidth={5} strokeLinejoin="round" strokeLinecap="round">
-        <path d="M150 610 L140 780 h44 L196 614z" fill={SKIN} />
-        <path d="M206 614 L218 780 h44 L252 610z" fill={SKIN} />
-        <path d="M128 790 h62 v14 h-66z M212 790 h62 v14 h-66z" fill="#3B3B3B" />
-        <path d="M122 500 h158 l12 130 h-80 l-12 -60 l-12 60 h-80z" fill="#6E6A64" />
-        <path d="M104 236 q-30 110 -40 270 q18 14 38 0 q10 -150 34 -230z" fill={SKIN} />
-        <path d="M120 222 h160 q24 8 26 40 l-14 250 h-184 l-12 -250 q2 -32 24 -40z" fill="#4FA3A5" />
-        <path d="M296 236 q44 60 36 150 q-80 30 -196 36 q-10 -20 6 -36 q90 -6 156 -30 q-6 -60 -26 -90z" fill={SKIN} />
-        <ellipse cx={126 + scratch * 0.3} cy={404 + scratch} rx="30" ry="24" fill={SKIN} />
-        <path d="M176 176 h48 v52 q-24 14 -48 0z" fill={SKIN_SHADE} />
-        <ellipse cx="200" cy="120" rx="82" ry="92" fill={SKIN} />
-        <path d="M118 110 c-8 -76 38 -106 88 -106 56 0 92 34 78 104 -18 -34 -48 -48 -86 -44 -38 4 -62 18 -80 46z" fill={HAIR} />
-      </g>
-      <g fill="none" stroke={VOX_COLORS.ink} strokeWidth={6} strokeLinecap="round">
-        <path d="M160 116 l24 10 M240 116 l-24 10" />
-        <path d="M168 146 q6 -8 12 0 M220 146 q6 -8 12 0" />
-        <path d="M178 186 q10 -8 20 0 t20 0 t18 0" />
-      </g>
-      <g stroke={VOX_COLORS.ink} strokeWidth={4} strokeLinecap="round" opacity={0.5 + Math.abs(Math.sin(frame * 0.9)) * 0.5}>
-        <path d="M44 390 l-24 -8 M40 420 l-26 4 M46 450 l-20 14" />
-      </g>
-    </svg>
-  );
-};
 
 export const RepellentBottle = ({width, frame = 0, style}: ArtProps) => {
   const puff = (frame % 30) / 30;

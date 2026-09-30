@@ -6,13 +6,13 @@ import {VOX_COLORS} from '../../design/tokens';
 import {TYPE_SCALE} from '../../design/typography';
 import {progressBetween} from '../../utils/animation';
 import {InkText, Photo, popAt, VoxScene, type SceneProps} from '../voxShared';
-import {BITE_SPOTS, BiteDot, flight, ItchyPerson, Mosquito} from './art';
+import {BITE_SPOTS, BiteDot, flight, Mosquito} from './art';
 
 const {range, events} = MOSQUITO_TIMINGS.hook;
 const COPY = MOSQUITO_SCRIPT.hook;
 
-const PERSON_WIDTH = 340;
-const PERSON_SCALE = PERSON_WIDTH / 400;
+const PERSON_WIDTH = 480;
+const PERSON_SCALE = PERSON_WIDTH / 1024;
 const BITE_INTERVAL = 6;
 
 export const bitesShown = (localFrame: number) =>
@@ -30,20 +30,20 @@ export const Scene01Hook = ({frame, localFrame}: SceneProps) => {
 
   return (
     <VoxScene frame={frame} localFrame={localFrame} duration={range.duration} zoom={1.05}>
-      <Cutout frame={localFrame} start={events.people} x={230} y={600} width={PERSON_WIDTH} height={PERSON_WIDTH * 2.05} rotate={-2} variant="sticker">
-        <ItchyPerson width={PERSON_WIDTH} frame={localFrame} />
+      <Cutout frame={localFrame} start={events.people} x={230} y={600} width={PERSON_WIDTH} height={PERSON_WIDTH * 1.5} rotate={-2} variant="sticker">
+        <Photo src="assets/host/itchy.png" fit="contain" objectPosition="50% 50%" />
         {BITE_SPOTS.map((spot, index) => {
           const start = events.bites + index * BITE_INTERVAL;
           if (localFrame < start) return null;
           return (
-            <div key={index} style={{position: 'absolute', left: spot.x * PERSON_SCALE - 16, top: spot.y * PERSON_SCALE - 16}}>
-              <BiteDot size={32} pop={popAt(localFrame, start)} />
+            <div key={index} style={{position: 'absolute', left: spot.x * PERSON_SCALE - 13, top: spot.y * PERSON_SCALE - 13}}>
+              <BiteDot size={26} pop={popAt(localFrame, start)} />
             </div>
           );
         })}
       </Cutout>
-      <Cutout frame={localFrame} start={events.people + 8} x={680} y={600} width={400} height={640} rotate={2} variant="sticker">
-        <Photo src="assets/characters/arms-crossed.png" fit="contain" objectPosition="50% 50%" />
+      <Cutout frame={localFrame} start={events.people + 8} x={680} y={600} width={480} height={720} rotate={2} variant="sticker">
+        <Photo src="assets/friend/arms-crossed.png" fit="contain" objectPosition="50% 50%" />
       </Cutout>
       {[0, 1, 2].map((seed) => {
         const {x, y} = flight(localFrame, seed, {x: 230, y: 560}, {x: 200, y: 280});

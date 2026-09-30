@@ -89,7 +89,7 @@ export const Scene04Color = ({frame, localFrame}: SceneProps) => {
         </svg>
         {localFrame >= events.heat && (
           <Cutout frame={localFrame} start={events.heat} x={HEAT_CENTER.x} y={HEAT_CENTER.y} width={520} height={780} rotate={-2} variant="sticker">
-            <Photo src="assets/characters/arms-crossed.png" fit="contain" objectPosition="50% 50%" />
+            <Photo src="assets/host/standing-left.png" fit="contain" objectPosition="50% 50%" />
           </Cutout>
         )}
         {[0, 1].map((seed) => {
