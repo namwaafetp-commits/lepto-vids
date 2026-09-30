@@ -17,7 +17,7 @@ const ITEM_STARTS = [events.item0, events.item1, events.item2, events.item3] as 
 const Thumbnail = ({index, frame}: {index: number; frame: number}): ReactNode => {
   switch (index) {
     case 0:
-      return <Photo src="assets/characters/sick-blanket.png" objectPosition="50% 12%" zoom={1.7} />;
+      return <Photo src="assets/host/sick-blanket.png" objectPosition="50% 10%" zoom={1.35} />;
     case 1:
       return <Photo src="assets/characters/phone-doctor.png" objectPosition="52% 10%" zoom={1.9} />;
     case 2:

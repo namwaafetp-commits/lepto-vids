@@ -3,8 +3,8 @@ import {VOX_COLORS} from '../../design/tokens';
 import {THAI_FONT_FAMILY} from '../../design/typography';
 
 /**
- * Vector stand-ins for the antibiotics film. Photographic cutouts should replace
- * the pharmacy and sore-throat drawings at public/assets/antibiotics/*.png when approved.
+ * Vector art for the antibiotics film. The pharmacy drawing is a stand-in for
+ * public/assets/backgrounds/pharmacy.png until that illustration exists.
  */
 
 type ArtProps = Readonly<{
@@ -13,11 +13,6 @@ type ArtProps = Readonly<{
   color?: string;
   style?: CSSProperties;
 }>;
-
-const SKIN = '#E7B08A';
-const SKIN_SHADE = '#C98B66';
-const HAIR = '#2A1F17';
-const JACKET = '#F2B72E';
 
 export const Bacterium = ({width, frame = 0, color = VOX_COLORS.bacteria, style}: ArtProps) => {
   const wave = Math.sin(frame * 0.18) * 7;
@@ -96,7 +91,7 @@ export const PillBlister = ({width, style}: ArtProps) => (
   </svg>
 );
 
-/** Stand-in for public/assets/antibiotics/pharmacy.png. */
+/** Stand-in for public/assets/backgrounds/pharmacy.png. */
 export const PharmacyScene = ({width, style}: ArtProps) => (
   <svg viewBox="0 0 760 520" preserveAspectRatio="xMidYMid slice" style={{width, height: (width * 520) / 760, display: 'block', ...style}} aria-hidden="true">
     <rect width="760" height="520" fill="#CFE6DA" />
@@ -133,39 +128,3 @@ export const PharmacyScene = ({width, style}: ArtProps) => (
     <path d="M0 420h760" stroke="#9C7A55" strokeWidth={4} />
   </svg>
 );
-
-/** Stand-in for public/assets/antibiotics/sore-throat.png: the series character, hand to throat. */
-export const SoreThroatPortrait = ({width, frame = 0, style}: ArtProps) => {
-  const ache = 0.55 + Math.sin(frame * 0.2) * 0.25;
-  return (
-    <svg viewBox="0 0 480 600" preserveAspectRatio="xMidYMid slice" style={{width, height: (width * 600) / 480, display: 'block', ...style}} aria-hidden="true">
-      <defs>
-        <radialGradient id="sore-throat-glow">
-          <stop offset="0%" stopColor={VOX_COLORS.danger} stopOpacity=".75" />
-          <stop offset="100%" stopColor={VOX_COLORS.danger} stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <rect width="480" height="600" fill="#BFD3D6" />
-      <path d="M40 600c10-120 70-170 200-176 130 6 190 56 200 176z" fill={JACKET} stroke={VOX_COLORS.ink} strokeWidth={5} />
-      <path d="M190 430l50 60 50-60" fill="#E9E6E0" stroke={VOX_COLORS.ink} strokeWidth={4} />
-      <path d="M200 350h80v90q-40 22-80 0z" fill={SKIN_SHADE} stroke={VOX_COLORS.ink} strokeWidth={5} />
-      <ellipse cx="240" cy="385" rx="72" ry="42" fill="url(#sore-throat-glow)" opacity={ache} />
-      <ellipse cx="240" cy="250" rx="104" ry="122" fill={SKIN} stroke={VOX_COLORS.ink} strokeWidth={5} />
-      <path d="M136 232c-10-96 44-140 110-140 70 0 118 44 102 134-20-44-58-64-108-58-50 6-82 24-104 64z" fill={HAIR} />
-      <ellipse cx="134" cy="262" rx="16" ry="26" fill={SKIN} stroke={VOX_COLORS.ink} strokeWidth={4} />
-      <ellipse cx="346" cy="262" rx="16" ry="26" fill={SKIN} stroke={VOX_COLORS.ink} strokeWidth={4} />
-      <g fill="none" stroke={VOX_COLORS.ink} strokeWidth={6} strokeLinecap="round">
-        <path d="M182 246q18 10 36 0" />
-        <path d="M262 246q18 10 36 0" />
-        <path d="M176 214l40 8M304 214l-40 8" />
-        <path d="M212 318q28-18 56 0" />
-      </g>
-      <ellipse cx="176" cy="286" rx="20" ry="11" fill={VOX_COLORS.danger} opacity=".22" />
-      <ellipse cx="304" cy="286" rx="20" ry="11" fill={VOX_COLORS.danger} opacity=".22" />
-      <path d="M150 470c-8-44 18-86 58-92 34-4 54 12 52 30-2 16-20 22-40 22l-10 50z" fill={SKIN} stroke={VOX_COLORS.ink} strokeWidth={5} strokeLinejoin="round" />
-      <g stroke={VOX_COLORS.danger} strokeWidth={7} strokeLinecap="round" opacity={ache}>
-        <path d="M318 372l40-14M322 400l46 4M312 426l36 22" />
-      </g>
-    </svg>
-  );
-};

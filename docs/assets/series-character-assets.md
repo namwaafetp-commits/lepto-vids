@@ -22,7 +22,9 @@ The brief for generating polished image assets for the Vox-style health series (
 
 ## Character block: the host (paste into every host prompt)
 
-> The character is a friendly Thai woman in her mid-20s: warm light-tan skin, shoulder-length straight black hair with a side part, small silver stud earrings, round friendly face, expressive dark eyes, natural eyebrows. She wears a mustard-yellow short-sleeve crew-neck T-shirt, dark navy straight-leg jeans and white sneakers.
+> The character is a friendly Thai woman in her mid-20s: warm light-tan skin, shoulder-length straight black hair with a center-left part, round friendly face, expressive dark eyes, natural eyebrows. She wears a loose mustard-yellow long-sleeve cardigan, open at the front, over a teal crew-neck top, cream straight-leg trousers and teal flat shoes.
+
+*(This matches the approved reference sheet, `host/host-reference.png`, which replaced the original outfit idea.)*
 
 ## Character block: the friend (paste into the friend prompt)
 
@@ -34,17 +36,17 @@ The brief for generating polished image assets for the Vox-style health series (
 
 Save host files in `public/assets/host/`, the friend in `public/assets/friend/`, and backgrounds in `public/assets/backgrounds/`. PNG only.
 
-| # | File name | Used in | Replaces |
-|---|---|---|---|
-| 0 | `host/host-reference.png` | Reference only (not in the video) | — |
-| 1 | `host/sore-throat.png` | Antibiotics · scene 1 | Vector placeholder drawing |
-| 2 | `host/sick-blanket.png` | Antibiotics · scene 7 | `sick-blanket.png` |
-| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` |
-| 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` |
-| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing |
-| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` |
-| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` |
-| 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing |
+| # | File name | Used in | Replaces | Status |
+|---|---|---|---|---|
+| 0 | `host/host-reference.png` | Reference only (not in the video) | — | ✅ Done |
+| 1 | `host/sore-throat.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
+| 2 | `host/sick-blanket.png` | Antibiotics · scene 7 | `sick-blanket.png` | ✅ Done, in the video |
+| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | To do |
+| 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` | To do |
+| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | To do |
+| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | To do |
+| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | To do |
+| 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing | To do |
 
 ---
 
@@ -68,7 +70,7 @@ Each prompt below goes **after** the Style block and Character block (and with t
 > Standing, confident warm smile, one hand giving a thumbs-up at chest height, the other hand relaxed at her side. Looking at the viewer.
 
 ### 5 · Itchy from mosquito bites — `host/itchy.png`
-> Standing, annoyed and itchy: scratching her left forearm with her right hand, shoulders raised, lips pressed together, eyes squinting. Her arms are bare. **Do not draw any bites or marks on her skin** (they're animated on top in the video). Small motion lines near the scratching hand.
+> Standing, annoyed and itchy: scratching her left forearm with her right hand, shoulders raised, lips pressed together, eyes squinting. **She has taken off her cardigan** (it's tied around her waist), so she wears only the teal top with short sleeves and her arms are bare. **Do not draw any bites or marks on her skin** (they're animated on top in the video). Small motion lines near the scratching hand.
 
 ### 6 · Standing, facing left — `host/standing-left.png`
 > Standing relaxed in a three-quarter view **facing the left side of the image**, hands loosely at her sides, calm neutral expression, mouth slightly open as if breathing out gently. Her face must be clearly visible and in the upper fifth of the image.

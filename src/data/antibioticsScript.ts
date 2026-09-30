@@ -1,7 +1,7 @@
 /** On-screen Thai copy for the antibiotics explainer; narration lives in the design spec. */
 export const ANTIBIOTICS_SCRIPT = {
   hook: {
-    request: 'ขอยาแก้อักเสบครับ',
+    request: 'ขอยาแก้อักเสบค่ะ',
     question: 'คุ้นไหม?',
   },
   twist: {

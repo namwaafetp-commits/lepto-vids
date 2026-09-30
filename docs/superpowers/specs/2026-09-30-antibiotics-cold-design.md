@@ -18,7 +18,7 @@ Scene timings are targets; final timing follows the recorded narration.
 
 ### Scene 1 — Hook (0–6 s)
 - **VO:** เจ็บคอนิดหน่อย ไปร้านยา แล้วขอ "ยาแก้อักเสบ"… คุ้นไหม?
-- **On screen:** Speech bubble "ขอยาแก้อักเสบครับ" → big kinetic "คุ้นไหม?"
+- **On screen:** Speech bubble "ขอยาแก้อักเสบค่ะ" → big kinetic "คุ้นไหม?"
 - **Visual:** Paper background. A cutout of a person holding their throat slides in with a slight tilt. Pharmacy counter cutout, then a pill blister pack drops onto it with a "thunk".
 
 ### Scene 2 — The twist (6–14 s)
