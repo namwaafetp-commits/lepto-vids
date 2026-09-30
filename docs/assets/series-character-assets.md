@@ -28,9 +28,28 @@ The brief for generating polished image assets for the Vox-style health series (
 
 ## Character block: the friend (paste into the friend prompt)
 
-> A second character, her friend: a Thai man in his mid-20s, short neat black hair, calm easy smile, wearing a teal short-sleeve T-shirt, light grey chino shorts and dark sneakers. Same flat paper-cutout style as the host.
+> A second character, her friend: a Thai man in his mid-20s, short wavy black hair, calm easy smile, wearing an open teal short-sleeve shirt over a white T-shirt, loose black trousers and black sneakers. Same flat paper-cutout style as the host.
+
+*(Updated to match the friend from round 2, whose look works well.)*
 
 ---
+
+## Round 2 feedback: what went wrong and how to redo
+
+The first batch (reference, sore throat, blanket) came out clean. In round 2, the four character images had problems:
+
+| Image | Problem |
+|---|---|
+| Itchy, phone call | Her **black hair was erased** along with the background, so she looks bald. Edges are jagged. |
+| Standing | A **different woman** (wavy hair, new face) and a brown blob left behind the figure. |
+| Friend | A large **gradient panel** is still attached behind him, and his black shoes were erased. |
+| All four | A **new outfit** (yellow T-shirt, teal wide trousers) instead of the approved cardigan look. |
+
+**How to avoid this:**
+1. **Use the same workflow as the first batch.** Ask ChatGPT for a transparent background directly. Don't run the image through a separate background-removal tool: those tools erase black hair and black shoes.
+2. **If transparency comes out wrong**, generate on a **flat pure green background (#00FF00)** instead and send that. I can remove a flat green background cleanly on my side without touching hair or shoes.
+3. **Always attach `host-reference.png`** and add: *"Same woman and same outfit as the attached reference: yellow cardigan, teal top, cream trousers, teal flat shoes. Same face and straight shoulder-length hair."*
+4. Check the result on a light background before sending: hair, shoes and edges should all be intact.
 
 ## Shot list
 
@@ -41,12 +60,12 @@ Save host files in `public/assets/host/`, the friend in `public/assets/friend/`,
 | 0 | `host/host-reference.png` | Reference only (not in the video) | — | ✅ Done |
 | 1 | `host/sore-throat.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
 | 2 | `host/sick-blanket.png` | Antibiotics · scene 7 | `sick-blanket.png` | ✅ Done, in the video |
-| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | To do |
+| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | Redo (see below) |
 | 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` | To do |
-| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | To do |
-| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | To do |
-| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | To do |
-| 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing | To do |
+| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | Redo (see below) |
+| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | Redo (see below) |
+| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | Redo (see below) |
+| 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
 
 ---
 

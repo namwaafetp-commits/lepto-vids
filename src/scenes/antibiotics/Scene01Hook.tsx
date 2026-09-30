@@ -2,7 +2,7 @@ import {Cutout} from '../../components/vox/Cutout';
 import {Highlighter} from '../../components/vox/Highlighter';
 import {ANTIBIOTICS_SCRIPT} from '../../data/antibioticsScript';
 import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
-import {PharmacyScene, PillBlister} from './art';
+import {PillBlister} from './art';
 import {InkText, Photo, SpeechBubble, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.hook;
@@ -11,7 +11,7 @@ const COPY = ANTIBIOTICS_SCRIPT.hook;
 export const Scene01Hook = ({frame, localFrame}: SceneProps) => (
   <VoxScene frame={frame} localFrame={localFrame} duration={range.duration} zoom={1.06}>
     <Cutout frame={localFrame} start={events.pharmacy} x={452} y={380} width={800} height={560} rotate={2}>
-      <PharmacyScene width={768} />
+      <Photo src="assets/backgrounds/pharmacy.png" objectPosition="50% 45%" />
     </Cutout>
     <Cutout frame={localFrame} start={events.person} x={270} y={990} width={440} height={660} rotate={-3} variant="sticker">
       <Photo src="assets/host/sore-throat.png" fit="contain" objectPosition="50% 50%" />

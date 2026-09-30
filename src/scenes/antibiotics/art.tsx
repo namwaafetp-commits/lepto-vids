@@ -2,10 +2,7 @@ import type {CSSProperties} from 'react';
 import {VOX_COLORS} from '../../design/tokens';
 import {THAI_FONT_FAMILY} from '../../design/typography';
 
-/**
- * Vector art for the antibiotics film. The pharmacy drawing is a stand-in for
- * public/assets/backgrounds/pharmacy.png until that illustration exists.
- */
+/** Vector art for the antibiotics film: drawn in code so it can animate. */
 
 type ArtProps = Readonly<{
   width: number;
@@ -88,43 +85,5 @@ export const PillBlister = ({width, style}: ArtProps) => (
         </g>
       );
     })}
-  </svg>
-);
-
-/** Stand-in for public/assets/backgrounds/pharmacy.png. */
-export const PharmacyScene = ({width, style}: ArtProps) => (
-  <svg viewBox="0 0 760 520" preserveAspectRatio="xMidYMid slice" style={{width, height: (width * 520) / 760, display: 'block', ...style}} aria-hidden="true">
-    <rect width="760" height="520" fill="#CFE6DA" />
-    <rect x="250" y="26" width="260" height="84" rx="14" fill="#1F8A5B" />
-    <path d="M292 50h16v12h12v16h-12v12h-16v-12h-12v-16h12z" fill="#FFFFFF" />
-    <text x="430" y="86" textAnchor="middle" fontFamily={THAI_FONT_FAMILY} fontSize={44} fontWeight={800} fill="#FFFFFF">
-      ร้านยา
-    </text>
-    {[150, 250].map((shelfY, row) => (
-      <g key={shelfY}>
-        <rect x="40" y={shelfY + 70} width="680" height="12" fill="#9C7A55" />
-        {Array.from({length: 11}, (_, index) => {
-          const palette = ['#F4F1EA', '#E9A23B', '#6FA8DC', '#E06C75', '#FFFFFF', '#8BC49A'];
-          const h = 44 + ((index * 7 + row * 3) % 4) * 7;
-          return (
-            <rect
-              key={index}
-              x={54 + index * 60}
-              y={shelfY + 70 - h}
-              width="48"
-              height={h}
-              rx="4"
-              fill={palette[(index + row * 2) % palette.length]}
-              stroke={VOX_COLORS.ink}
-              strokeOpacity=".35"
-              strokeWidth={2}
-            />
-          );
-        })}
-      </g>
-    ))}
-    <rect x="0" y="372" width="760" height="148" fill="#B98E5E" />
-    <rect x="0" y="360" width="760" height="22" fill="#D7B387" />
-    <path d="M0 420h760" stroke="#9C7A55" strokeWidth={4} />
   </svg>
 );
