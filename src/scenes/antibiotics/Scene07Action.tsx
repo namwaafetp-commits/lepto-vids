@@ -4,7 +4,7 @@ import {ScribbleAnnotation} from '../../components/vox/ScribbleAnnotation';
 import {ANTIBIOTICS_SCRIPT} from '../../data/antibioticsScript';
 import {ANTIBIOTICS_TIMINGS} from '../../data/antibioticsTimings';
 import {VOX_COLORS} from '../../design/tokens';
-import {Capsule, PillBlister} from './art';
+import {Capsule, PillBlister, WaterGlass} from './art';
 import {InkText, Photo, VoxScene, type SceneProps} from '../voxShared';
 
 const {range, events} = ANTIBIOTICS_TIMINGS.action;
@@ -17,9 +17,13 @@ const ITEM_STARTS = [events.item0, events.item1, events.item2, events.item3] as 
 const Thumbnail = ({index, frame}: {index: number; frame: number}): ReactNode => {
   switch (index) {
     case 0:
-      return <Photo src="assets/host/sick-blanket.png" objectPosition="50% 10%" zoom={1.35} />;
+      return (
+        <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#E3F1F4'}}>
+          <WaterGlass width={120} frame={frame} />
+        </div>
+      );
     case 1:
-      return <Photo src="assets/host/phone-doctor.png" objectPosition="50% 8%" zoom={1.6} />;
+      return <Photo src="assets/host/sick-blanket.png" objectPosition="50% 10%" zoom={1.35} />;
     case 2:
       return (
         <div style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#E4EEF0'}}>

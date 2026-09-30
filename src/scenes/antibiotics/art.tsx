@@ -87,3 +87,19 @@ export const PillBlister = ({width, style}: ArtProps) => (
     })}
   </svg>
 );
+
+/** Stand-in for public/assets/host/resting-water.png: a glass of water with a gently moving surface. */
+export const WaterGlass = ({width, frame = 0, style}: ArtProps) => {
+  const wave = Math.sin(frame * 0.12) * 4;
+  return (
+    <svg viewBox="0 0 160 220" style={{width, height: (width * 220) / 160, overflow: 'visible', ...style}} aria-hidden="true">
+      <path d={`M30 70 q25 ${wave} 50 0 t50 0 L122 204 q-2 10 -12 10 H50 q-10 0 -12 -10z`} fill="#9FD3E0" opacity=".85" />
+      <path d="M20 16 H140 L122 204 q-2 10 -12 10 H50 q-10 0 -12 -10z" fill="none" stroke={VOX_COLORS.ink} strokeWidth={6} strokeLinejoin="round" />
+      <path d="M42 40 L54 190" stroke="#FFFFFF" strokeWidth={8} strokeLinecap="round" opacity=".6" />
+      <g fill="#FFFFFF" opacity=".75">
+        <circle cx="96" cy={150 - ((frame * 0.8) % 70)} r="5" />
+        <circle cx="76" cy={176 - ((frame * 0.6 + 30) % 90)} r="4" />
+      </g>
+    </svg>
+  );
+};

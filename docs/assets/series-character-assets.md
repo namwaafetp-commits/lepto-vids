@@ -36,7 +36,7 @@ The brief for generating polished image assets for the Vox-style health series (
 
 ## Status
 
-All 9 assets are done and used in both films (round 3). The notes below are kept for generating future poses.
+Assets 0–8 are done (round 3). #9 was added after the blanket image moved to the fever row. The notes below are kept for generating future poses.
 
 ## Round 2 feedback: what went wrong and how to redo
 
@@ -63,13 +63,14 @@ Save host files in `public/assets/host/`, the friend in `public/assets/friend/`,
 |---|---|---|---|---|
 | 0 | `host/host-reference.png` | Reference only (not in the video) | — | ✅ Done |
 | 1 | `host/sore-throat.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
-| 2 | `host/sick-blanket.png` | Antibiotics · scene 7 | `sick-blanket.png` | ✅ Done, in the video |
-| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | ✅ Done, in the video |
+| 2 | `host/sick-blanket.png` | Antibiotics · scene 7 (ไข้สูง row) | `sick-blanket.png` | ✅ Done, in the video |
+| 3 | `host/phone-doctor.png` | Spare (not currently used) | — | ✅ Done |
 | 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` | ✅ Done, in the video |
 | 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
 | 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | ✅ Done, in the video |
 | 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | ✅ Done, in the video |
 | 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
+| 9 | `host/resting-water.png` | Antibiotics · scene 7 (พักผ่อน ดื่มน้ำ row) | Glass-of-water drawing | To do |
 
 ---
 
@@ -117,3 +118,7 @@ Each prompt below goes **after** the Style block and Character block (and with t
 ## Adding the files to the repo
 
 Upload them on GitHub to the `feat/lepto-film-foundation` branch in the folders above ("Add file → Upload files"), the same way you uploaded the earlier images. If you'd rather not sort them into folders, upload them anywhere with these file names and they'll be moved into place.
+
+### 9 · Resting with a glass of water — `host/resting-water.png`
+*(Attach the reference sheet.)*
+> Use the attached image as the character reference. Draw the SAME woman with the SAME face, the SAME straight shoulder-length black hair, and the SAME outfit: loose mustard-yellow long-sleeve cardigan open at the front, teal crew-neck top, cream straight-leg trousers, teal flat shoes. Pose: full body, sitting relaxed on a simple teal sofa with a cushion behind her, holding a clear glass of water in both hands, calm and slightly tired but comfortable expression. No thermometer, no blanket. Style: flat 2D editorial illustration, paper-cutout collage style like a Vox explainer video; bold simple shapes, minimal flat shading, subtle paper grain, crisp clean edges; same style as the reference. Format: portrait 2:3 (1024x1536), subject centered, filling about 90% of the image height, whole body and sofa visible. Transparent background. No text, no border, no ground shadow, no glow or shape behind her.
