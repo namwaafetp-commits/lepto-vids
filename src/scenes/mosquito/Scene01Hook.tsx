@@ -48,8 +48,8 @@ export const Scene01Hook = ({frame, localFrame}: SceneProps) => {
       {[0, 1, 2].map((seed) => {
         const {x, y} = flight(localFrame, seed, {x: 230, y: 560}, {x: 200, y: 280});
         return (
-          <div key={seed} style={{position: 'absolute', left: x - 45, top: y - 34, opacity: swarm}}>
-            <Mosquito width={90} frame={localFrame + seed * 3} flip={seed % 2 === 1} />
+          <div key={seed} style={{position: 'absolute', left: x - 65, top: y - 65, opacity: swarm}}>
+            <Mosquito width={130} frame={localFrame + seed * 3} flip={seed % 2 === 1} />
           </div>
         );
       })}

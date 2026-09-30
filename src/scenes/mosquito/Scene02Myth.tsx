@@ -27,7 +27,7 @@ export const Scene02Myth = ({frame, localFrame}: SceneProps) => (
     </div>
     <Cutout frame={localFrame} start={events.card} x={452} y={880} width={660} height={460} rotate={-3} tape>
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-        <Mosquito width={430} frame={localFrame} />
+        <Mosquito width={330} frame={localFrame} flip />
         <div style={{...TYPE_SCALE.headline, fontSize: 52, color: VOX_COLORS.ink, marginTop: 12}}>{COPY.femaleLabel}</div>
       </div>
     </Cutout>

@@ -56,8 +56,8 @@ export const Scene03Breath = ({frame, localFrame}: SceneProps) => {
         {COPY.gas}
       </div>
       <ScribbleAnnotation kind="circle" frame={localFrame} start={events.gas + 8} end={events.gas + 28} x={gas.x - 110} y={gas.y - 170} width={220} height={130} color={VOX_COLORS.ink} strokeWidth={6} />
-      <div style={{position: 'absolute', left: bug.x - 60, top: bug.y - 46, opacity: progressBetween(localFrame, events.mosquito, events.mosquito + 6)}}>
-        <Mosquito width={120} frame={localFrame} flip />
+      <div style={{position: 'absolute', left: bug.x - 85, top: bug.y - 85, opacity: progressBetween(localFrame, events.mosquito, events.mosquito + 6)}}>
+        <Mosquito width={170} frame={localFrame} flip />
       </div>
       <svg viewBox="0 0 904 120" style={{position: 'absolute', left: 0, top: 1320, width: 904, height: 120, overflow: 'visible'}} aria-hidden="true">
         <path

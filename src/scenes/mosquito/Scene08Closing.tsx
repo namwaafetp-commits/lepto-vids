@@ -37,7 +37,7 @@ export const Scene08Closing = ({frame, localFrame}: SceneProps) => {
           opacity: localFrame >= events.thumbsUp ? 1 : 0,
         }}
       >
-        <Mosquito width={110} frame={localFrame} flip />
+        <Mosquito width={160} frame={localFrame} flip />
       </div>
     </VoxScene>
   );

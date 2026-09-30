@@ -1,9 +1,10 @@
 import type {CSSProperties} from 'react';
+import {Img, staticFile} from 'remotion';
 import type {Vector2} from '../../components/Camera';
 import {VOX_COLORS} from '../../design/tokens';
 import {THAI_FONT_FAMILY} from '../../design/typography';
 
-/** Vector art for the mosquito film: drawn in code so it can animate. */
+/** Art for the mosquito film: the illustrated mosquito character plus vector props drawn in code so they can animate. */
 
 type ArtProps = Readonly<{
   width: number;
@@ -23,11 +24,26 @@ export const flight = (frame: number, seed: number, center: Vector2, radius: Vec
 
 export type MosquitoProps = ArtProps &
   Readonly<{
-    /** Aedes (ยุงลาย) white bands on legs and abdomen. */
-    striped?: boolean;
     /** Faces left by default; true faces right. */
     flip?: boolean;
   }>;
+
+/** The illustrated mosquito (public/assets/mosquito/mosquito.png, drawn facing right) with a small wing-buzz jitter. */
+export const Mosquito = ({width, frame = 0, flip = false, style}: MosquitoProps) => {
+  const buzz = Math.sin(frame * 2.3) * 2.5;
+  return (
+    <Img
+      src={staticFile('assets/mosquito/mosquito.png')}
+      style={{
+        width,
+        height: width,
+        display: 'block',
+        transform: `${flip ? '' : 'scaleX(-1) '}rotate(${buzz.toFixed(2)}deg)`,
+        ...style,
+      }}
+    />
+  );
+};
 
 const LEGS = [
   'M88 82 L64 104 L30 136',
@@ -38,10 +54,11 @@ const LEGS = [
   'M106 82 L136 96 L176 104',
 ];
 
-export const Mosquito = ({width, frame = 0, striped = false, flip = false, style}: MosquitoProps) => {
+/** Vector Aedes aegypti (ยุงลาย): black with white bands, for the species card. Faces left. */
+export const AedesMosquito = ({width, frame = 0, style}: ArtProps) => {
   const flap = 0.35 + Math.abs(Math.sin(frame * 1.7)) * 0.65;
   return (
-    <svg viewBox="0 0 200 150" style={{width, height: (width * 150) / 200, overflow: 'visible', transform: flip ? 'scaleX(-1)' : undefined, ...style}} aria-hidden="true">
+    <svg viewBox="0 0 200 150" style={{width, height: (width * 150) / 200, overflow: 'visible', ...style}} aria-hidden="true">
       <g transform={`translate(104 62) scale(1 ${flap.toFixed(3)}) translate(-104 -62)`} fill={WING} fillOpacity=".75" stroke={VOX_COLORS.ink} strokeWidth={2.5}>
         <ellipse cx="136" cy="34" rx="44" ry="13" transform="rotate(-24 136 34)" />
         <ellipse cx="128" cy="44" rx="38" ry="11" transform="rotate(-8 128 44)" />
@@ -51,23 +68,19 @@ export const Mosquito = ({width, frame = 0, striped = false, flip = false, style
           <path key={d} d={d} />
         ))}
       </g>
-      {striped && (
-        <g fill="none" stroke="#FFFFFF" strokeWidth={2.4} strokeLinecap="butt" strokeDasharray="5 9">
-          {LEGS.map((d) => (
-            <path key={d} d={d} />
-          ))}
-        </g>
-      )}
+      <g fill="none" stroke="#FFFFFF" strokeWidth={2.4} strokeLinecap="butt" strokeDasharray="5 9">
+        {LEGS.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </g>
       <ellipse cx="146" cy="84" rx="40" ry="12" transform="rotate(16 146 84)" fill={MOSQUITO_BODY} stroke={VOX_COLORS.ink} strokeWidth={3} />
-      {striped && (
-        <g stroke="#FFFFFF" strokeWidth={4} strokeLinecap="round" transform="rotate(16 146 84)">
-          {[124, 140, 156, 170].map((x) => (
-            <path key={x} d={`M${x} 76 V92`} />
-          ))}
-        </g>
-      )}
+      <g stroke="#FFFFFF" strokeWidth={4} strokeLinecap="round" transform="rotate(16 146 84)">
+        {[124, 140, 156, 170].map((x) => (
+          <path key={x} d={`M${x} 76 V92`} />
+        ))}
+      </g>
       <ellipse cx="96" cy="70" rx="22" ry="17" fill={MOSQUITO_BODY} stroke={VOX_COLORS.ink} strokeWidth={3} />
-      {striped && <path d="M90 56 q6 12 0 26" fill="none" stroke="#FFFFFF" strokeWidth={3.5} strokeLinecap="round" />}
+      <path d="M90 56 q6 12 0 26" fill="none" stroke="#FFFFFF" strokeWidth={3.5} strokeLinecap="round" />
       <circle cx="68" cy="64" r="12" fill={MOSQUITO_BODY} stroke={VOX_COLORS.ink} strokeWidth={3} />
       <circle cx="63" cy="61" r="4" fill="#8B2F2F" />
       <path d="M58 70 L14 92" stroke={VOX_COLORS.ink} strokeWidth={3.5} strokeLinecap="round" />

@@ -95,8 +95,8 @@ export const Scene04Color = ({frame, localFrame}: SceneProps) => {
         {[0, 1].map((seed) => {
           const {x, y} = flight(localFrame, seed + 4, {x: HEAT_CENTER.x + (seed === 0 ? -290 : 290), y: HEAT_CENTER.y - 120}, {x: 50, y: 140});
           return (
-            <div key={seed} style={{position: 'absolute', left: x - 50, top: y - 38}}>
-              <Mosquito width={100} frame={localFrame + seed * 5} flip={seed === 0} />
+            <div key={seed} style={{position: 'absolute', left: x - 70, top: y - 70}}>
+              <Mosquito width={140} frame={localFrame + seed * 5} flip={seed === 0} />
             </div>
           );
         })}

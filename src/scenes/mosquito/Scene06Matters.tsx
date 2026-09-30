@@ -7,7 +7,7 @@ import {VOX_COLORS} from '../../design/tokens';
 import {THAI_FONT_FAMILY} from '../../design/typography';
 import {easeOutCubic, progressBetween} from '../../utils/animation';
 import {InkText, popAt, VoxScene, type SceneProps} from '../voxShared';
-import {Mosquito, Sun} from './art';
+import {AedesMosquito, Sun} from './art';
 
 const {range, events} = MOSQUITO_TIMINGS.matters;
 const COPY = MOSQUITO_SCRIPT.matters;
@@ -39,7 +39,7 @@ export const Scene06Matters = ({frame, localFrame}: SceneProps) => {
     <VoxScene frame={frame} localFrame={localFrame} duration={range.duration} zoom={1.04}>
       <Cutout frame={localFrame} start={events.card} x={452} y={300} width={700} height={430} rotate={-2} tape>
         <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-          <Mosquito width={500} frame={localFrame} striped />
+          <AedesMosquito width={500} frame={localFrame} />
         </div>
       </Cutout>
       <ScribbleAnnotation kind="circle" frame={localFrame} start={events.stripes} end={events.stripes + 22} x={420} y={250} width={260} height={180} strokeWidth={7} />

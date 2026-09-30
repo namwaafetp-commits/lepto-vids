@@ -68,8 +68,8 @@ export const Scene05Smell = ({frame, localFrame}: SceneProps) => {
       {[0, 1, 2].map((seed) => {
         const {x, y} = flight(localFrame, seed + 7, {x: magnetTop.x, y: magnetTop.y + 40}, {x: 170, y: 60});
         return (
-          <div key={seed} style={{position: 'absolute', left: x - 40, top: y - 30, opacity: swarm}}>
-            <Mosquito width={80} frame={localFrame + seed * 4} flip={seed === 1} />
+          <div key={seed} style={{position: 'absolute', left: x - 55, top: y - 55, opacity: swarm}}>
+            <Mosquito width={110} frame={localFrame + seed * 4} flip={seed === 1} />
           </div>
         );
       })}
