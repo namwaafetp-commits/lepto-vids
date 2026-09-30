@@ -60,11 +60,11 @@ Save host files in `public/assets/host/`, the friend in `public/assets/friend/`,
 | 0 | `host/host-reference.png` | Reference only (not in the video) | — | ✅ Done |
 | 1 | `host/sore-throat.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
 | 2 | `host/sick-blanket.png` | Antibiotics · scene 7 | `sick-blanket.png` | ✅ Done, in the video |
-| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | Redo (see below) |
+| 3 | `host/phone-doctor.png` | Antibiotics · scene 7 | `phone-doctor.png` | Redo (see round 2 feedback) |
 | 4 | `host/thumbs-up.png` | Antibiotics · scene 8, Mosquito · scene 8 | `thumbs-up.png` | To do |
-| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | Redo (see below) |
-| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | Redo (see below) |
-| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | Redo (see below) |
+| 5 | `host/itchy.png` | Mosquito · scene 1 | Vector placeholder drawing | Redo (see round 2 feedback) |
+| 6 | `host/standing-left.png` | Mosquito · scenes 3 and 4 | `arms-crossed.png` | Redo (see round 2 feedback) |
+| 7 | `friend/arms-crossed.png` | Mosquito · scene 1 | `arms-crossed.png` | Redo (see round 2 feedback) |
 | 8 | `backgrounds/pharmacy.png` | Antibiotics · scene 1 | Vector placeholder drawing | ✅ Done, in the video |
 
 ---
