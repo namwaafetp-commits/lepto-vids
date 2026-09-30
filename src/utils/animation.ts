@@ -23,3 +23,12 @@ export const fadeInOut = (
 ): number =>
   progressBetween(frame, fadeInStart, fadeInEnd) *
   (1 - progressBetween(frame, fadeOutStart, fadeOutEnd));
+
+/** Fast-in, gentle-settle curve for strokes and counters; input is clamped. */
+export const easeOutCubic = (value: number): number => 1 - (1 - clamp01(value)) ** 3;
+
+const fraction = (value: number) => value - Math.floor(value);
+
+/** Deterministic pseudo-random value in [0, 1) for a seeded index. */
+export const hash01 = (index: number, salt = 0): number =>
+  fraction(Math.sin(index * 127.1 + salt * 311.7) * 43758.5453);

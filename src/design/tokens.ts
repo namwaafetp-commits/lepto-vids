@@ -22,3 +22,16 @@ export const LAYOUT = {
     medium: 14,
   },
 } as const;
+
+/** Vox-style explainer palette: warm paper, ink, and one highlighter accent. */
+export const VOX_COLORS = {
+  paper: '#F4EFE6',
+  paperShade: '#E6DDCC',
+  ink: '#1B1B1B',
+  inkSoft: '#5E5850',
+  highlighter: '#FFD23F',
+  danger: '#D64541',
+  bacteria: '#2A8C8C',
+  card: '#FFFFFF',
+  tape: '#F3E3A6',
+} as const;

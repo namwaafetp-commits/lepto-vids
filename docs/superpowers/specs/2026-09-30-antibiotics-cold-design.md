@@ -98,7 +98,15 @@ These live in `src/components/vox/` so future videos in the series can reuse the
 
 ## Assets Needed
 
-New cutout images (same style as the existing PNGs): person with a sore throat, pharmacy counter, antibiotic blister pack, bacterium, virus. Reused: `sick-blanket.png`, `phone-doctor.png`, `thumbs-up.png`. Until the new art exists, simple SVG placeholders stand in at stable paths.
+The bacterium, virus, capsule and blister pack are drawn as vector art in `src/scenes/antibiotics/art.tsx`, so they can animate.
+
+Two vector stand-ins should later be replaced by images in the same style as the existing character PNGs:
+- the character with a sore throat → `public/assets/antibiotics/sore-throat.png`
+- the pharmacy counter → `public/assets/antibiotics/pharmacy.png`
+
+Reused character images now live in `public/assets/characters/` (`sick-blanket.png`, `phone-doctor.png`, `thumbs-up.png`), because Remotion serves static files from `public/`. Their transparent backgrounds allow a white-outlined "sticker" treatment.
+
+Thai text uses the bundled `@fontsource/noto-sans-thai` package, so renders don't depend on fonts installed on the machine.
 
 Audio (narration, music, sound effects) is out of scope for the first build; scene timings stay editable in `src/data/`.
 
