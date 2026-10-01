@@ -1,8 +1,8 @@
 import type {SoundCue} from '../components/Soundtrack';
 import {BITE_SPOTS} from '../scenes/mosquito/art';
 import {BITE_INTERVAL} from '../scenes/mosquito/Scene01Hook';
-import {MOSQUITO_TIMINGS as T} from './mosquitoTimings';
-import {every, narrationCues, sceneCues} from './sound';
+import {MOSQUITO_DURATION, MOSQUITO_TIMINGS as T} from './mosquitoTimings';
+import {every, musicCue, narrationCues, sceneCues} from './sound';
 
 const hook = sceneCues(T.hook);
 const myth = sceneCues(T.myth);
@@ -25,6 +25,7 @@ const {events: cl} = T.closing;
 /** Sound effects pinned to the animation events they accompany, plus the narration clips. */
 export const MOSQUITO_SOUND: readonly SoundCue[] = [
   ...narrationCues('mosquito', T),
+  musicCue('mosquito', T, MOSQUITO_DURATION, 0.5),
 
   hook.sfx(h.people, 'pop'),
   hook.sfx(h.people + 8, 'pop'),

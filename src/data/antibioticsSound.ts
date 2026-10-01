@@ -1,6 +1,6 @@
 import type {SoundCue} from '../components/Soundtrack';
-import {ANTIBIOTICS_TIMINGS as T} from './antibioticsTimings';
-import {every, narrationCues, sceneCues} from './sound';
+import {ANTIBIOTICS_DURATION, ANTIBIOTICS_TIMINGS as T} from './antibioticsTimings';
+import {every, musicCue, narrationCues, sceneCues} from './sound';
 
 const hook = sceneCues(T.hook);
 const twist = sceneCues(T.twist);
@@ -23,6 +23,7 @@ const {events: cl} = T.closing;
 /** Sound effects pinned to the animation events they accompany, plus the narration clips. */
 export const ANTIBIOTICS_SOUND: readonly SoundCue[] = [
   ...narrationCues('antibiotics', T),
+  musicCue('antibiotics', T, ANTIBIOTICS_DURATION, 0.3),
 
   hook.sfx(h.pharmacy, 'pop'),
   hook.sfx(h.person, 'pop'),

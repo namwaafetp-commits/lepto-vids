@@ -54,3 +54,22 @@ test('scenes stretch to fit narration and keep their designed length otherwise',
   assert.equal(scenes.b.events.x, 1);
   assert.ok(NARRATION_LEAD > 0);
 });
+
+for (const [film, cues, duration] of films) {
+  test(`${film}: music loops under the whole film, fades at the ends and dips under narration`, () => {
+    const {MUSIC_DUCK} = load('src/data/sound.ts');
+    const music = cues.filter((cue) => cue.src === `audio/music/${film}.wav`);
+    assert.equal(music.length, 1);
+    const [cue] = music;
+    assert.equal(cue.from, 0);
+    assert.equal(cue.duration, duration);
+    assert.ok(cue.loop);
+    assert.equal(cue.gain(0), 0);
+    assert.ok(cue.gain(duration) <= 0);
+    const voice = cues.find((c) => c.src.startsWith('audio/narration/') && c.from > 60);
+    assert.ok(Math.abs(cue.gain(voice.from + 5) - MUSIC_DUCK) < 1e-9, 'ducked while narration plays');
+    const levels = Array.from({length: duration}, (_, frame) => cue.gain(frame));
+    assert.ok(levels.some((level) => level === 1), 'full level between narration lines');
+    assert.ok(levels.every((level) => level >= 0 && level <= 1));
+  });
+}

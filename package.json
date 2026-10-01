@@ -11,7 +11,8 @@
     "render:antibiotics": "remotion render src/index.ts AntibioticsFilm out/antibiotics.mp4 --codec h264",
     "render:mosquito": "remotion render src/index.ts MosquitoFilm out/mosquito.mp4 --codec h264",
     "audio:sfx": "node scripts/generate-sfx.mjs",
-    "audio:narration": "node scripts/generate-narration.mjs"
+    "audio:narration": "node scripts/generate-narration.mjs",
+    "audio:music": "node scripts/generate-music.mjs"
   },
   "dependencies": {
     "@fontsource/noto-sans-thai": "5.3.0",

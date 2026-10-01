@@ -50,3 +50,38 @@ export const narrationCues = (film: Film, timings: Readonly<Record<string, Scene
 /** Evenly spaced repeats of a sound, e.g. counter ticks or a row of pops. */
 export const every = (count: number, step: number, at: (index: number) => SoundCue): SoundCue[] =>
   Array.from({length: count}, (_, index) => at(index * step));
+
+/** Frames for the music to fade in at the start, out at the end, and to dip around narration. */
+const MUSIC_FADE_IN = 15;
+const MUSIC_FADE_OUT = 45;
+const MUSIC_DUCK_RAMP = 10;
+/** Share of the music level kept while someone is speaking. */
+export const MUSIC_DUCK = 0.45;
+
+/**
+ * Background music looped under the whole film. It fades in and out at the ends
+ * and dips to MUSIC_DUCK while narration plays, so the voice always sits on top.
+ */
+export const musicCue = (
+  film: Film,
+  timings: Readonly<Record<string, SceneTiming>>,
+  duration: number,
+  volume: number,
+): SoundCue => {
+  const spoken = Object.entries(timings)
+    .map(([scene, {range}]) => [range.start + NARRATION_LEAD, range.start + NARRATION_LEAD + narrationFrames(film, scene)] as const)
+    .filter(([from, to]) => to > from);
+  const ramp = (distance: number) => Math.min(1, Math.max(0, distance / MUSIC_DUCK_RAMP));
+  return {
+    from: 0,
+    src: `audio/music/${film}.wav`,
+    volume,
+    duration,
+    loop: true,
+    gain: (frame) => {
+      const edges = Math.min(1, frame / MUSIC_FADE_IN, (duration - frame) / MUSIC_FADE_OUT);
+      const speech = Math.max(0, ...spoken.map(([from, to]) => Math.min(ramp(frame - from + MUSIC_DUCK_RAMP), ramp(to + MUSIC_DUCK_RAMP - frame))));
+      return Math.max(0, edges) * (1 - (1 - MUSIC_DUCK) * speech);
+    },
+  };
+};
