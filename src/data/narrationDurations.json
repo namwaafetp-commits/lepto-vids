@@ -1,22 +1,22 @@
 {
   "antibiotics": {
-    "hook": 6.4,
-    "twist": 10.48,
-    "cause": 6.48,
-    "illusion": 9.44,
-    "resistance": 12.52,
-    "scale": 11.36,
-    "action": 16.72,
-    "closing": 4.08
+    "hook": 5.931,
+    "twist": 10.731,
+    "cause": 7.051,
+    "illusion": 8.771,
+    "resistance": 12.171,
+    "scale": 10.531,
+    "action": 17.011,
+    "closing": 3.931
   },
   "mosquito": {
-    "hook": 5.12,
-    "myth": 10.96,
-    "breath": 8.16,
-    "color": 17.4,
-    "smell": 22.96,
-    "matters": 9.6,
-    "action": 22.64,
-    "closing": 3.64
+    "hook": 5.851,
+    "myth": 12.331,
+    "breath": 8.011,
+    "color": 16.611,
+    "smell": 22.451,
+    "matters": 8.771,
+    "action": 18.371,
+    "closing": 3.571
   }
 }
