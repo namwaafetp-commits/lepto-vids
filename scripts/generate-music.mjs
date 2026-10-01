@@ -25,11 +25,13 @@ const rng = (seed) => () => {
 };
 
 const hz = (midi) => 440 * 2 ** ((midi - 69) / 12);
-const NOTE = {C: 0, 'C#': 1, D: 2, Eb: 3, E: 4, F: 5, 'F#': 6, G: 7, Ab: 8, A: 9, Bb: 10, B: 11};
-/** 'A3' → MIDI number. */
+const LETTER = {C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11};
+/** 'A3', 'G#4', 'Bb2' → MIDI number. Throws on anything else, so a typo can't silently produce NaN. */
 const midi = (name) => {
-  const [, pitch, octave] = /^([A-G][#b]?)(-?\d)$/.exec(name);
-  return NOTE[pitch] + (Number(octave) + 1) * 12;
+  const match = /^([A-G])([#b]?)(-?\d)$/.exec(name);
+  if (!match) throw new Error(`Unknown note "${name}"`);
+  const [, letter, accidental, octave] = match;
+  return LETTER[letter] + (accidental === '#' ? 1 : accidental === 'b' ? -1 : 0) + (Number(octave) + 1) * 12;
 };
 
 /** Adds `voice(t)` for `seconds` into `out` starting at time `at`. */

@@ -73,3 +73,17 @@ for (const [film, cues, duration] of films) {
     assert.ok(levels.every((level) => level >= 0 && level <= 1));
   });
 }
+
+for (const film of ['antibiotics', 'mosquito']) {
+  test(`${film}: music file has no silent second`, () => {
+    const {readFileSync} = require('node:fs');
+    const wav = readFileSync(`public/audio/music/${film}.wav`);
+    const rate = wav.readUInt32LE(24);
+    const pcm = wav.subarray(44);
+    for (let start = 0; start + rate * 2 <= pcm.length; start += rate * 2) {
+      let sum = 0;
+      for (let i = start; i < start + rate * 2; i += 2) sum += (pcm.readInt16LE(i) / 32768) ** 2;
+      assert.ok(Math.sqrt(sum / rate) > 0.02, `silent around ${start / 2 / rate}s`);
+    }
+  });
+}
