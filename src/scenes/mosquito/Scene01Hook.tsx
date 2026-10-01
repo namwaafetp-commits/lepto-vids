@@ -13,7 +13,7 @@ const COPY = MOSQUITO_SCRIPT.hook;
 
 const PERSON_WIDTH = 480;
 const PERSON_SCALE = PERSON_WIDTH / 1024;
-const BITE_INTERVAL = 6;
+export const BITE_INTERVAL = 6;
 
 export const bitesShown = (localFrame: number) =>
   BITE_SPOTS.filter((_, index) => localFrame >= events.bites + index * BITE_INTERVAL).length;

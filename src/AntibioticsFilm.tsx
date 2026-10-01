@@ -1,6 +1,8 @@
 import './design/fonts';
 import type {ComponentType} from 'react';
 import {useCurrentFrame} from 'remotion';
+import {Soundtrack} from './components/Soundtrack';
+import {ANTIBIOTICS_SOUND} from './data/antibioticsSound';
 import {ANTIBIOTICS_TIMINGS, type AntibioticsSceneId} from './data/antibioticsTimings';
 import {VOX_COLORS} from './design/tokens';
 import {Scene01Hook} from './scenes/antibiotics/Scene01Hook';
@@ -34,6 +36,7 @@ export const AntibioticsFilm: React.FC = () => {
         const {range} = ANTIBIOTICS_TIMINGS[id];
         return frame >= range.start && frame <= range.end ? <Scene key={id} frame={frame} localFrame={frame - range.start} /> : null;
       })}
+      <Soundtrack cues={ANTIBIOTICS_SOUND} />
     </div>
   );
 };

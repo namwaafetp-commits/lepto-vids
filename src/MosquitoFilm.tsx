@@ -1,6 +1,8 @@
 import './design/fonts';
 import type {ComponentType} from 'react';
 import {useCurrentFrame} from 'remotion';
+import {Soundtrack} from './components/Soundtrack';
+import {MOSQUITO_SOUND} from './data/mosquitoSound';
 import {MOSQUITO_TIMINGS, type MosquitoSceneId} from './data/mosquitoTimings';
 import {VOX_COLORS} from './design/tokens';
 import {Scene01Hook} from './scenes/mosquito/Scene01Hook';
@@ -34,6 +36,7 @@ export const MosquitoFilm: React.FC = () => {
         const {range} = MOSQUITO_TIMINGS[id];
         return frame >= range.start && frame <= range.end ? <Scene key={id} frame={frame} localFrame={frame - range.start} /> : null;
       })}
+      <Soundtrack cues={MOSQUITO_SOUND} />
     </div>
   );
 };

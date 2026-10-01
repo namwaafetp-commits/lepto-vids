@@ -24,17 +24,20 @@ const load = (file) => {
 const {ANTIBIOTICS_TIMINGS, ANTIBIOTICS_DURATION} = load('src/data/antibioticsTimings.ts');
 const {ANTIBIOTICS_SCRIPT} = load('src/data/antibioticsScript.ts');
 
-test('eight scenes cover 84 seconds at 30 fps without gaps or overlaps', () => {
-  const scenes = Object.values(ANTIBIOTICS_TIMINGS);
+test('eight scenes run back to back for at least 84 seconds and fit their narration', () => {
+  const {narrationFrames, NARRATION_LEAD} = load('src/data/narrationTiming.ts');
+  const scenes = Object.entries(ANTIBIOTICS_TIMINGS);
   assert.equal(scenes.length, 8);
-  assert.equal(ANTIBIOTICS_DURATION, 84 * 30);
   let expectedStart = 0;
-  for (const {range} of scenes) {
+  for (const [id, {range}] of scenes) {
     assert.equal(range.start, expectedStart);
     assert.equal(range.end - range.start + 1, range.duration);
+    const spoken = narrationFrames('antibiotics', id);
+    if (spoken > 0) assert.ok(range.duration >= NARRATION_LEAD + spoken, `${id} is shorter than its narration`);
     expectedStart = range.end + 1;
   }
   assert.equal(expectedStart, ANTIBIOTICS_DURATION);
+  assert.ok(ANTIBIOTICS_DURATION >= 84 * 30);
 });
 
 test('every scene event lands inside its scene', () => {
