@@ -9,7 +9,9 @@
     "render:test": "remotion render src/index.ts LeptoFilm out/test.mp4 --codec h264",
     "test": "node --test test/*.cjs",
     "render:antibiotics": "remotion render src/index.ts AntibioticsFilm out/antibiotics.mp4 --codec h264",
-    "render:mosquito": "remotion render src/index.ts MosquitoFilm out/mosquito.mp4 --codec h264"
+    "render:mosquito": "remotion render src/index.ts MosquitoFilm out/mosquito.mp4 --codec h264",
+    "audio:sfx": "node scripts/generate-sfx.mjs",
+    "audio:narration": "node scripts/generate-narration.mjs"
   },
   "dependencies": {
     "@fontsource/noto-sans-thai": "5.3.0",
