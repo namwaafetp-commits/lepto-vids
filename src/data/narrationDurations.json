@@ -1,4 +1,19 @@
 {
-  "antibiotics": {},
-  "mosquito": {}
+  "antibiotics": {
+    "hook": 6.411,
+    "twist": 15.302,
+    "cause": 6.851,
+    "illusion": 9.211,
+    "resistance": 13.931,
+    "scale": 12.182,
+    "action": 18.131,
+    "closing": 4.371
+  },
+  "mosquito": {
+    "hook": 5.12,
+    "myth": 10.96,
+    "breath": 8.16,
+    "color": 17.4,
+    "smell": 22.96
+  }
 }
